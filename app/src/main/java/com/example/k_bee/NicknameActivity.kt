@@ -14,9 +14,9 @@ class NicknameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nickname)
 
-        nameEdit = findViewById(R.id.nameEdit)
-        checkBtn = findViewById(R.id.checkBtn)
-        applyBtn = findViewById(R.id.applyBtn)
+        nameEdit = findViewById(R.id.nameEdit) // 입력
+        checkBtn = findViewById(R.id.checkBtn) // 중복 확인 버튼
+        applyBtn = findViewById(R.id.applyBtn) // 결정 버튼
 
         // 중복 확인 버튼 눌렀을 때
         checkBtn.setOnClickListener {

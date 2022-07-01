@@ -8,7 +8,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         debug {
-            storeFile file('C:\\TAVE\\K_bee\\HashKey.jks')
+            storeFile file('C:\\TAVE\\K_bee\\app\\HashKey.jks')
             storePassword 'honeycom'
             keyAlias 'HashKey'
             keyPassword 'honeycom'

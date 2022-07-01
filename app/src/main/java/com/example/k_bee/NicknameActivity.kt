@@ -32,7 +32,7 @@ class NicknameActivity : AppCompatActivity() {
             else if (user != null) {
                 Toast.makeText(this, "정보 요청 성공", Toast.LENGTH_SHORT).show()
                 number.text = "회원 번호: ${user.id}"
-                number.text = "이메일: ${user.kakaoAccount?.email}"
+                mail.text = "이메일: ${user.kakaoAccount?.email}"
             }
         }
 

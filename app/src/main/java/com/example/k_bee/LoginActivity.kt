@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         ggBtn = findViewById(R.id.ggBtn)
         kkoBtn = findViewById(R.id.kkoBtn)
 
+
         // 로그인 유지
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {

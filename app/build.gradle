@@ -4,6 +4,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\TAVE\\HashKey.jks')
+            storePassword 'honeycom'
+            keyAlias 'HashKey'
+            keyPassword 'honeycom'
+        }
+    }
     compileSdk 32
 
     defaultConfig {

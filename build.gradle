@@ -5,6 +5,14 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
 }
 
+// 카카오톡 로그인
+subprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+    }
+}
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

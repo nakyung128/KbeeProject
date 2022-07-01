@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1047188945068",
+    "project_id": "k-bee-project",
+    "storage_bucket": "k-bee-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047188945068:android:a3c2e5643e536646328709",
+        "android_client_info": {
+          "package_name": "com.example.k_bee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047188945068-aqb0jemirap0a5g22s3kugtdnsgkgad2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrc1p2VN7NhKs6BkH0UrgeQ9_PlmYr_Vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047188945068-aqb0jemirap0a5g22s3kugtdnsgkgad2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

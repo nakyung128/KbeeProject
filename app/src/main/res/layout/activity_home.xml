@@ -52,10 +52,13 @@
         android:id="@+id/imageView8"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="333dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/empty"
-        tools:layout_editor_absoluteY="331dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/now_week"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/empty" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -82,9 +85,10 @@
         android:id="@+id/imageView9"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/flying"
-        tools:layout_editor_absoluteX="24dp" />
+        app:srcCompat="@drawable/flying" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

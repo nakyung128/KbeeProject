@@ -12,8 +12,6 @@ class NicknameActivity : AppCompatActivity() {
     lateinit var nameEdit: EditText
     lateinit var checkBtn: Button
     lateinit var applyBtn: Button
-    lateinit var number: TextView
-    lateinit var mail: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,19 +20,15 @@ class NicknameActivity : AppCompatActivity() {
         nameEdit = findViewById(R.id.nameEdit) // 입력
         checkBtn = findViewById(R.id.checkBtn) // 중복 확인 버튼
         applyBtn = findViewById(R.id.applyBtn) // 결정 버튼
-        number = findViewById(R.id.textView3)
-        mail = findViewById(R.id.textView4)
 
-        UserApiClient.instance.me { user, error ->
+        /*UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Toast.makeText(this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show()
             }
             else if (user != null) {
                 Toast.makeText(this, "정보 요청 성공", Toast.LENGTH_SHORT).show()
-                number.text = "회원 번호: ${user.id}"
-                mail.text = "이메일: ${user.kakaoAccount?.email}"
             }
-        }
+        }*/
 
         // 중복 확인 버튼 눌렀을 때
         checkBtn.setOnClickListener {

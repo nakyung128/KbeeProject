@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TAVE/KbeeProject/app/src/main/res/layout/activity_home.xml" value="0.22" />
+        <entry key="..\:/TAVE/KbeeProject/app/src/main/res/layout/activity_home_calendar.xml" value="0.3333333333333333" />
+        <entry key="..\:/TAVE/KbeeProject/app/src/main/res/layout/activity_home_list.xml" value="0.17274569402228976" />
+        <entry key="..\:/TAVE/KbeeProject/app/src/main/res/layout/activity_login.xml" value="0.3333333333333333" />
+        <entry key="..\:/TAVE/KbeeProject/app/src/main/res/layout/activity_nickname.xml" value="0.16666666666666666" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_home.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

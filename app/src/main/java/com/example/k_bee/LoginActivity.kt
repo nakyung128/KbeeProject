@@ -153,7 +153,7 @@ class LoginActivity : AppCompatActivity() {
     private fun moveNextPage() {
         var currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            startActivity(Intent(this, NicknameActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             this.finish()
         }
     }
@@ -167,7 +167,8 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 // 로그인 처리
                 Toast.makeText(this, "로그인 성공!", Toast.LENGTH_LONG).show()
-                moveNextPage()
+                var intent = Intent(this, NicknameActivity::class.java)
+                startActivity(intent)
             } else {
                 // 오류
                 Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()

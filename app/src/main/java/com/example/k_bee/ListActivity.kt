@@ -24,7 +24,7 @@ class ListActivity : AppCompatActivity() {
 
         initRecycler()
 
-        // 화면 나갔다 오면 추가한 거 사라지는 것 수정해야 함.
+        // 화면 나갔다 오면 직접 추가한 목표가 사라짐. 수정해야 함.
         // 추가 버튼 클릭했을 때
         addBtn.setOnClickListener {
             val dialog = addDialog(this)

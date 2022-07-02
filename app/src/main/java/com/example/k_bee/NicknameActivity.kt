@@ -22,15 +22,6 @@ class NicknameActivity : AppCompatActivity() {
         checkBtn = findViewById(R.id.checkBtn) // 중복 확인 버튼
         applyBtn = findViewById(R.id.applyBtn) // 결정 버튼
 
-        /*UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                Toast.makeText(this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show()
-            }
-            else if (user != null) {
-                Toast.makeText(this, "정보 요청 성공", Toast.LENGTH_SHORT).show()
-            }
-        }*/
-
         // 중복 확인 버튼 눌렀을 때
         checkBtn.setOnClickListener {
             var name = nameEdit.text.toString() // editText에 작성한 것 가져오기

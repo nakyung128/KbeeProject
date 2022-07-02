@@ -6,60 +6,441 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <TextView
         android:id="@+id/badgeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/kotrahope"
-        android:text="배지 도감"
-        android:textSize="34sp"
         android:gravity="center_vertical"
-        android:layout_marginStart="150dp"/>
-
+        android:text="배지 도감"
+        android:textSize="34sp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         tools:ignore="SpeakableTextPresentCheck">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="35dp"
-                android:fontFamily="@font/nanumbae"
-                android:text="응애벌"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/badge1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="168dp"
-                app:srcCompat="@drawable/locked" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="66dp"
-                app:srcCompat="@drawable/locked" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp">
 
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:fontFamily="@font/nanumbae"
+                    android:text="응애벌"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/badge1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="168dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="66dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="52dp"
+                    app:srcCompat="@drawable/flying" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="205dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:fontFamily="@font/nanumbae"
+                    android:text="꿀벌"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/badge3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="108dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="46dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="183dp"
+                    android:layout_marginBottom="59dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge6"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="108dp"
+                    android:layout_marginBottom="14dp"
+                    app:srcCompat="@drawable/locked" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="341dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:fontFamily="@font/nanumbae"
+                    android:text="수벌"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/badge7"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="103dp"
+                    android:layout_marginTop="46dp"
+                    android:layout_marginEnd="206dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge8"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="130dp"
+                    android:layout_marginBottom="149dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge9"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="58dp"
+                    android:layout_marginBottom="192dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge10"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="56dp"
+                    android:layout_marginBottom="107dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge11"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="132dp"
+                    android:layout_marginBottom="63dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge12"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="106dp"
+                    android:layout_marginBottom="108dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge13"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="131dp"
+                    android:layout_marginBottom="236dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge14"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="252dp"
+                    android:layout_marginBottom="21dp"
+                    app:srcCompat="@drawable/locked" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="614dp"
+                android:layout_marginBottom="10dp">
+
+
+                <ImageView
+                    android:id="@+id/badge31"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="246dp"
+                    android:layout_marginTop="29dp"
+                    android:layout_marginEnd="63dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge30"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="427dp"
+                    android:layout_marginEnd="288dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge24"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="124dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge25"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="134dp"
+                    android:layout_marginBottom="165dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge26"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="132dp"
+                    android:layout_marginBottom="80dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge27"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="208dp"
+                    android:layout_marginBottom="37dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge28"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="206dp"
+                    android:layout_marginBottom="121dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge29"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="102dp"
+                    android:layout_marginTop="228dp"
+                    android:layout_marginEnd="207dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge23"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="184dp"
+                    android:layout_marginTop="512dp"
+                    android:layout_marginEnd="125dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge22"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="253dp"
+                    android:layout_marginTop="469dp"
+                    android:layout_marginEnd="56dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:fontFamily="@font/nanumbae"
+                    android:text="여왕벌"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/badge15"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="103dp"
+                    android:layout_marginTop="137dp"
+                    android:layout_marginEnd="206dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge16"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="132dp"
+                    android:layout_marginBottom="434dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge19"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="131dp"
+                    android:layout_marginBottom="346dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge18"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="57dp"
+                    android:layout_marginBottom="304dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge20"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="133dp"
+                    android:layout_marginBottom="261dp"
+                    app:srcCompat="@drawable/locked" />
+
+                <ImageView
+                    android:id="@+id/badge17"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="59dp"
+                    android:layout_marginBottom="389dp"
+                    app:srcCompat="@drawable/locked" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
 
 
 

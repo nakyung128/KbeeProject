@@ -2,12 +2,15 @@ package com.example.k_bee
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 
 class ListActivity : AppCompatActivity() {
     lateinit var todoAdapter: RecyclerItemAdapter
     val datas = mutableListOf<todoData>()
     lateinit var todoView : RecyclerView
+    lateinit var addBtn : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +19,11 @@ class ListActivity : AppCompatActivity() {
         todoView = findViewById(R.id.recyclerView)
 
         initRecycler()
+
+        // 추가 버튼 클릭했을 때
+        addBtn.setOnClickListener {
+
+        }
     }
     private fun initRecycler() {
         todoAdapter = RecyclerItemAdapter(this)

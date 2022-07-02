@@ -15,6 +15,7 @@ import com.example.k_bee.databinding.ActivityBadgeBinding.bind
 class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<RecyclerItemAdapter.ViewHolder>() {
 
     var datas = mutableListOf<todoData>()
+    private var mSelectedItem = -1
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,15 +28,21 @@ class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<
     override fun getItemCount(): Int = datas.size
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.bind(datas[position])
+        viewHolder.bind(datas[position], position)
     }
 
     // 각 항목에 필요한 기능 구현
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val todoText : CheckBox = itemView.findViewById(R.id.todoItem)
 
-        fun bind(item: todoData) {
+        fun bind(item: todoData, position: Int) {
             todoText.text = item.text
+            todoText.isChecked = position == mSelectedItem
+
+            todoText.setOnClickListener {
+                mSelectedItem = position
+                notifyItemRangeChanged(0, datas.size)
+            }
         }
     }
 }

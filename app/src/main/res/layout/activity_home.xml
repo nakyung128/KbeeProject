@@ -7,10 +7,10 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/todo_check4"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -18,10 +18,10 @@
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/todo_check1"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,43 +29,41 @@
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/todo_check6"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="240dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/todo_check5"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/todo_check3"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="333dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/now_week"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/todo_check2"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="244dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="240dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/empty" />
@@ -90,5 +88,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/flying" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/honey"
+        tools:layout_editor_absoluteY="150dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

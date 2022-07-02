@@ -6,13 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <View
+        android:id="@+id/viewModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFD98"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/kotrahope"
+        android:text="뱃지를 받았어요!"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/numBadge"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="444dp"
         android:fontFamily="@font/nanumbae"
-        android:text="구글 계정으로 로그인"
+        android:text="현재 뱃지 수 : _"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="492dp"
         android:fontFamily="@font/nanumbae"
-        android:text="카카오 계정으로 로그인"
+        android:text="공유하기"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,15 +69,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/kotrahope"
-        android:text="K-BEE (어플이름)"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

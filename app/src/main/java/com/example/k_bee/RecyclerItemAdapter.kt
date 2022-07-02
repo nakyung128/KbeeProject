@@ -17,6 +17,11 @@ class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<
     var datas = mutableListOf<todoData>()
     private var mSelectedItem = -1
 
+    fun addItem(todo: String) {
+        datas.add(todoData(todo))
+        notifyDataSetChanged() // 갱신
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

@@ -6,6 +6,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    buildFeatures {
+        viewBinding true
+    }
     signingConfigs {
         debug {
             storeFile file('C:\\TAVE\\K_bee\\app\\HashKey.jks')

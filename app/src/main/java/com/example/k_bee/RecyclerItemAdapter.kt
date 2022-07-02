@@ -15,6 +15,7 @@ import com.example.k_bee.databinding.ActivityBadgeBinding.bind
 class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<RecyclerItemAdapter.ViewHolder>() {
 
     var datas = mutableListOf<todoData>()
+    var checkText = ""
     private var mSelectedItem = -1
 
     fun addItem(todo: String) {
@@ -45,6 +46,7 @@ class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<
             todoText.isChecked = position == mSelectedItem
 
             todoText.setOnClickListener {
+                checkText = todoText.text.toString() // 선택된 체크박스의 텍스트
                 mSelectedItem = position
                 notifyItemRangeChanged(0, datas.size)
             }

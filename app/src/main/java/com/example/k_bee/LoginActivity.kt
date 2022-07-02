@@ -63,8 +63,8 @@ class LoginActivity : AppCompatActivity() {
             else if (tokenInfo != null) {
                 // 홈 화면으로 넘어가기
                 Toast.makeText(this, "정보 보기 성공", Toast.LENGTH_SHORT)
-                /*var intent = Intent(this, 홈액티비티::class.java)
-                startActivity(intent)*/
+                var intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
             }
         }
 

@@ -1,12 +1,10 @@
 package com.example.k_bee
 
-import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
-import android.widget.Toast
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 
 class ListActivity : AppCompatActivity() {
@@ -14,13 +12,15 @@ class ListActivity : AppCompatActivity() {
     val datas = mutableListOf<todoData>()
     lateinit var todoView : RecyclerView
     lateinit var addBtn : Button
+    lateinit var chooseBtn : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_list)
+        setContentView(R.layout.activity_list)
 
         todoView = findViewById(R.id.recyclerView)
-        addBtn = findViewById(R.id.addBtn)
+        addBtn = findViewById(R.id.addBtn) // 추가하기 버튼
+        chooseBtn = findViewById(R.id.chooseBtn) // 선택 완료 버튼
 
         initRecycler()
 
@@ -34,6 +34,17 @@ class ListActivity : AppCompatActivity() {
                     todoAdapter.addItem(todo)
                 }
             })
+        }
+
+        // 선택 완료 클릭했을 때
+        chooseBtn.setOnClickListener {
+            var checkedText = todoAdapter.checkText // 체크된 텍스트 내용
+
+            // 홈 화면으로 이동하기
+            // 선택된 체크박스 텍스트 가져와서 인텐트로 전달.
+            var intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra("checked", checkedText) // 값 전달
+            startActivity(intent) // 이동
         }
     }
     private fun initRecycler() {

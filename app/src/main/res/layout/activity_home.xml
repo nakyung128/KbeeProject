@@ -30,11 +30,13 @@
 
     <ImageView
         android:id="@+id/todo_check6"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="135dp"
         android:layout_marginBottom="240dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/todo2"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/empty" />
 
@@ -51,11 +53,12 @@
     <ImageView
         android:id="@+id/todo_check3"
         android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="111dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todo2"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
@@ -99,5 +102,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/honey" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:labelFor="@id/todo_check2"
+        app:layout_constraintBottom_toTopOf="@+id/todo_check3"
+        app:layout_constraintStart_toEndOf="@+id/todo_check1"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/todo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="282dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="44dp"
+        android:fontFamily="@font/kotrahope"
+        android:text="TextView"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/todo_check3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/todo_check6"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

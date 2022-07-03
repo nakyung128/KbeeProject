@@ -3,9 +3,12 @@ package com.example.k_bee
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class ListActivity : AppCompatActivity() {
     lateinit var todoAdapter: RecyclerItemAdapter
@@ -18,11 +21,18 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        // 실시간 db 관리 객체 얻어오기
+        val database : FirebaseDatabase = FirebaseDatabase.getInstance()
+        val myRef : DatabaseReference = database.getReference()
+
         todoView = findViewById(R.id.recyclerView)
         addBtn = findViewById(R.id.addBtn) // 추가하기 버튼
         chooseBtn = findViewById(R.id.chooseBtn) // 선택 완료 버튼
 
         initRecycler()
+
+        var number = intent.getIntExtra("number", 0)
+        Log.d("number", number.toString())
 
         // 화면 나갔다 오면 직접 추가한 목표가 사라짐. 수정해야 함.
         // 추가 버튼 클릭했을 때
@@ -39,11 +49,13 @@ class ListActivity : AppCompatActivity() {
         // 선택 완료 클릭했을 때
         chooseBtn.setOnClickListener {
             var checkedText = todoAdapter.checkText // 체크된 텍스트 내용
+            if (number != null) {
+                myRef.child("k-bee_database").child("todo${number}").setValue(checkedText)
+            }
 
             // 홈 화면으로 이동하기
             // 선택된 체크박스 텍스트 가져와서 인텐트로 전달.
             var intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("checked", checkedText) // 값 전달
             startActivity(intent) // 이동
         }
     }

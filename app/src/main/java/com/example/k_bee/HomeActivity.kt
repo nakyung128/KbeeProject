@@ -110,88 +110,77 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // 체크된 거 인텐트로 받을 경우
-        var checkText = intent.getStringExtra("checked")
-        // 한 군데 설정은 됨
-        if (checkText != null) {
-            add2.visibility = View.GONE // 버튼 없애기
-            // 텍스트 추가
-            todo2.visibility = View.VISIBLE
-            todo2.text = checkText
-            // 이미지 바꾸기
-            todoImg2.setImageResource(R.drawable.honey)
-            // 두 번째 todo에 선택했음
-            myRef.child("k-bee_database").child("todo2").setValue(checkText)
-            // 두 번째 거 실천했을 때
-            myRef.child("k-bee_database").child("IsCheck2").setValue(true)
-        }
-        /*if (checkText != null) {
-            if (number2) {
-                add2.visibility = View.GONE // 버튼 없애기
-                // 텍스트 추가
-                todo2.visibility = View.VISIBLE
-                todo2.text = checkText
-                number2 = false // 다시 false 처리해 주기
-                Log.d("number2", number2.toString())
-            }
-            else if (number3) {
-                add3.visibility = View.GONE // 버튼 없애기
-                // 텍스트 추가
-                todo3.visibility = View.VISIBLE
-                todo3.text = checkText
-                number3 = false
-            }
-            else if (number4) {
-                add4.visibility = View.GONE // 버튼 없애기
-                // 텍스트 추가
-                todo4.visibility = View.VISIBLE
-                todo4.text = checkText
-                number4 = false
-            }
-            else if (number5) {
-                add5.visibility = View.GONE // 버튼 없애기
-                // 텍스트 추가
-                todo5.visibility = View.VISIBLE
-                todo5.text = checkText
-                number5 = false
-            }
-            else if (number6) {
-                add6.visibility = View.GONE // 버튼 없애기
-                // 텍스트 추가
-                todo6.visibility = View.VISIBLE
-                todo6.text = checkText
-                number6 = false
-            }
-        }*/
-
         // 버튼 눌렀을 때
+        add1.setOnClickListener {
+            // 리스트 추가 화면으로 이동
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 1)
+            startActivity(intent)
+        }
+
         add2.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 2)
             startActivity(intent)
         }
 
         add3.setOnClickListener {
             // 리스트 추가 화면으로 이동
-            var intent = Intent(this, ShareActivity::class.java)
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 3)
             startActivity(intent)
         }
 
         add4.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 4)
             startActivity(intent)
         }
 
         add5.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 5)
             startActivity(intent)
         }
 
         add6.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 6)
+            startActivity(intent)
+        }
+
+        todo1.setOnClickListener {
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 1)
+            startActivity(intent)
+        }
+        todo2.setOnClickListener {
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 2)
+            startActivity(intent)
+        }
+        todo3.setOnClickListener {
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 3)
+            startActivity(intent)
+        }
+        todo4.setOnClickListener {
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 4)
+            startActivity(intent)
+        }
+        todo5.setOnClickListener {
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 5)
+            startActivity(intent)
+        }
+        todo6.setOnClickListener {
+            var intent = Intent(this, ListActivity::class.java)
+            intent.putExtra("number", 6)
             startActivity(intent)
         }
     }

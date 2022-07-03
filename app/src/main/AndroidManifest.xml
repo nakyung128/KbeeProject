@@ -2,22 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.k_bee">
+
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- 외부 저장소 사용을 위한 FileProvider auth 추가. -->
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="com.khs.instagramshareexampleproject.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true"
-        tools:ignore="WrongManifestParent">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/path">
-
-        </meta-data>
-    </provider> //
+    <!-- 외부 저장소 사용 권한 설정 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".GlobalApplication"
@@ -30,15 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.K_bee"
         tools:targetApi="31">
+
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ListActivity"
             android:exported="false" />
-        <activity
+        <!--<activity
             android:name=".TodoActivity"
-            android:exported="false" />
+            android:exported="false" />-->
         <activity
             android:name=".NicknameActivity"
             android:exported="false" />
@@ -65,6 +56,17 @@
                     android:scheme="kakao1e237fb02326f3776d48f513ce1566cd" />
             </intent-filter>
         </activity>
-    </application>
+        <!-- 외부 저장소 사용을 위한 FileProvider auth 추가. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.k_bee.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/path">
 
+            </meta-data>
+        </provider>
+    </application>
 </manifest>

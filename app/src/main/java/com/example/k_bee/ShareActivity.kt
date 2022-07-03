@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.k_bee.model.MainViewModel
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -51,6 +52,7 @@ class ShareActivity : AppCompatActivity() {
         // 뷰모델 초기화 메서드
         binding.viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
     }
+
     private fun setUpLifeCycleOwner() {
         binding.lifecycleOwner = this
         /*
@@ -266,9 +268,6 @@ class ShareActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
-        return FileProvider.getUriForFile(applicationContext, "com.khs.instagramshareexampleproject.fileprovider", fileItem)
+        return FileProvider.getUriForFile(applicationContext, "com.example.k_bee.fileprovider", fileItem)
     }
 }
-}
-
-

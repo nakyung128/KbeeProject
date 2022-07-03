@@ -14,6 +14,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -28,11 +29,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.k_bee.model.MainViewModel
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
-
+import java.io.*
 
 
 class ShareActivity : AppCompatActivity() {
@@ -153,6 +150,22 @@ class ShareActivity : AppCompatActivity() {
 
     private fun drawViewBitmap(): Bitmap {
         val imageView = binding.iv
+
+        // 배지 달성시 배지 도감으로 이동
+        var badge : ImageView = binding.iv
+
+        val stream = ByteArrayOutputStream()
+        val bitmap2 = (badge.getDrawable() as BitmapDrawable).bitmap
+        val scale = (1024 / bitmap2.width.toFloat())
+        val image_w = (bitmap2.width * scale).toInt()
+        val image_h = (bitmap2.height * scale).toInt()
+        val resize = Bitmap.createScaledBitmap(bitmap2, image_w, image_h, true)
+        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        val byteArray: ByteArray = stream.toByteArray()
+        val intent = Intent(this, BadgeActivity::class.java)
+        intent.putExtra("badge", byteArray)
+        startActivity(intent)
+
         val textView = binding.tv
         val title = binding.textView
 

@@ -141,15 +141,20 @@ class ShareActivity : AppCompatActivity() {
         val backgroundBitmap = Bitmap.createBitmap(backgroundWidth, backgroundHeight, Bitmap.Config.ARGB_8888) // 비트맵 생성
         val canvas = Canvas(backgroundBitmap) // 캔버스에 비트맵을 Mapping.
 
-        val bgColor = "#FFFD98" //그냥 지정했음 ㅠ
+        val bgColor = binding.viewModel?.background?.value
+        if (bgColor != null) {
+            val color = ContextCompat.getColor(baseContext, bgColor)
+            canvas.drawColor(color) // 캔버스에 현재 설정된 배경화면색으로 칠하기
+        }
         return backgroundBitmap
     }
 
     private fun drawViewBitmap(): Bitmap {
         val imageView = binding.iv
         val textView = binding.tv
+        val title = binding.textView
 
-        val margin = resources.displayMetrics.density * 20
+        val margin = resources.displayMetrics.density * 15
 
         val width = if (imageView.width > textView.width) {
             imageView.width
@@ -157,7 +162,7 @@ class ShareActivity : AppCompatActivity() {
             textView.width
         }
 
-        val height = (imageView.height + textView.height + margin).toInt()
+        val height = (imageView.height + textView.height + title.height + margin).toInt()
 
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
@@ -176,14 +181,22 @@ class ShareActivity : AppCompatActivity() {
         //아래는 TextView. 위에 ImageView와 같은 로직으로 비트맵으로 만든 후 캔버스에 그려준다.
         if(textView.length() > 0) {
             //textView가 공백이 아닐때만
+            // 공유할 화면 그리기
             val textViewBitmap = Bitmap.createBitmap(textView.width, textView.height, Bitmap.Config.ARGB_8888)
+            val titleBitmap = Bitmap.createBitmap(title.width, title.height, Bitmap.Config.ARGB_8888)
             val textViewCanvas = Canvas(textViewBitmap)
+            val titleCanvas = Canvas(titleBitmap)
             textView.draw(textViewCanvas)
+            title.draw(titleCanvas)
 
             val textViewLeft = ((width - textView.width) / 2).toFloat()
-            val textViewTop = imageView.height + margin
+            val textViewTop = imageView.height - margin
+
+            val titleLeft = ((width - title.width) / 2).toFloat()
+            val titleTop = title.height - margin*2
 
             canvas.drawBitmap(textViewBitmap, textViewLeft, textViewTop, null)
+            canvas.drawBitmap(titleBitmap, titleLeft, titleTop, null)
         }
 
         return bitmap

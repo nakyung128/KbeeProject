@@ -1,11 +1,15 @@
 package com.example.k_bee
 
+import android.app.Activity
+import android.app.Application
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -13,34 +17,43 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.common.model.AuthErrorCause.*
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 
 class LoginActivity : AppCompatActivity() {
     lateinit var ggBtn: Button
     lateinit var kkoBtn: Button
 
-    private lateinit var auth: FirebaseAuth // 객체의 공유 인스턴스
-    var googleSignInClient : GoogleSignInClient? = null
+    private var auth: FirebaseAuth? = null // 객체의 공유 인스턴스
+    private lateinit var client : GoogleSignInClient
     private var RC_SIGN_IN = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        ggBtn = findViewById(R.id.numBadge)
-        kkoBtn = findViewById(R.id.instaShareBtn)
+        ggBtn = findViewById(R.id.ggBtn)
+        kkoBtn = findViewById(R.id.kkoBtn)
 
-
-        // 구글 로그인 옵션 구성, requestIdToken 및 Email 요청
-        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.firebase_web_client_id))
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        // firebase auth 객체
+        // firebase auth 객체 초기화
         auth = FirebaseAuth.getInstance()
+
+
+        // 이미 로그인 되어 있는지 확인
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        if (account == null) {
+            Log.d("Google account", "로그인 안 되어있음")
+        } else {
+            Log.d("Google account", "로그인 완료된 상태")
+        }
 
         // 카카오 로그인 유지
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
@@ -49,16 +62,24 @@ class LoginActivity : AppCompatActivity() {
             }
             else if (tokenInfo != null) {
                 // 홈 화면으로 넘어가기
-                /*var intent = Intent(this, 홈액티비티::class.java)
-                startActivity(intent)*/
+                Toast.makeText(this, "정보 보기 성공", Toast.LENGTH_SHORT)
+                var intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
             }
         }
 
         // 구글로 로그인 버튼 클릭했을 시
         ggBtn.setOnClickListener {
-            // 구글 로그인
-           ggSignIn()
+            // 로그인 요청
+            ggSignIn()
         }
+
+        // 구글 로그인 옵션 구성, requestIdToken 및 Email 요청
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.firebase_web_client_id))
+            .requestEmail()
+            .build()
+        client = GoogleSignIn.getClient(this, gso)
 
         // 카카오 로그인 버튼 클릭했을 시
         kkoBtn.setOnClickListener {
@@ -67,8 +88,19 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // 유저가 앱에 이미 구글 로그인을 했는지 확인
+    public override fun onStart() {
+        super.onStart()
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        if (account !== null) { // 로그인 되어 있을 시에
+            // 바로 메인 액티비티로 이동
+            //toMainActivity(auth.currentUser)
+            moveNextPage()
+        }
+    }
+
     private fun ggSignIn() {
-        var signInIntent = googleSignInClient?.signInIntent
+        var signInIntent = client?.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
@@ -121,61 +153,45 @@ class LoginActivity : AppCompatActivity() {
     private fun moveNextPage() {
         var currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            startActivity(Intent(this, NicknameActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             this.finish()
         }
     }
 
     // Google Sign-In Methods
-    private fun firebaseAuthWithGoogle(acct : GoogleSignInAccount?) {
+    private fun firebaseAuthWithGoogle(account : GoogleSignInAccount?) {
         // Google SignInAccount 객체에서 아이디 토큰을 가져와 firebase auth로 교환하고 firebase에 인증
-        var credential = GoogleAuthProvider.getCredential(acct?.idToken, null)
-        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(this) { task ->
+        var credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+        auth?.signInWithCredential(credential)?.addOnCompleteListener{
+                task ->
             if (task.isSuccessful) {
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                // 로그인 처리
+                Toast.makeText(this, "로그인 성공!", Toast.LENGTH_LONG).show()
                 var intent = Intent(this, NicknameActivity::class.java)
                 startActivity(intent)
             } else {
-                Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+                // 오류
+                Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
             }
         }
-    }
-
-    // 유저가 앱에 이미 구글 로그인을 했는지 확인
-    public override fun onStart() {
-        super.onStart()
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        if (account !== null) { // 로그인 되어 있을 시에
-            // 바로 메인 액티비티로 이동
-            //toMainActivity(auth.currentUser)
-            //moveNextPage()
-        }
-    }
-    // Override
-    override fun onResume() {
-        super.onResume()
-        moveNextPage() // 자동 로그인
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        // 구글 로그인 메소드
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
+        if(requestCode == RC_SIGN_IN) {
+            var result = Auth.GoogleSignInApi.getSignInResultFromIntent(data!!)
+            // result가 성공했을 때 이 값을 firebase에 넘겨주기
+            if(result!!.isSuccess) {
+                var account = result.signInAccount
+                // Second step
                 firebaseAuthWithGoogle(account)
-                val email = account?.email.toString()
-                val familyName = account?.familyName.toString()
-
-                Log.d("account", email)
-                Log.d("account", familyName)
-            } catch (e : ApiException) {
-
             }
-        } else {
-
         }
+    }
+
+    // Override
+    override fun onResume() {
+        super.onResume()
+        moveNextPage() // 자동 로그인
     }
 }

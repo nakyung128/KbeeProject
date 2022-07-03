@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -48,6 +49,7 @@ class ListActivity : AppCompatActivity() {
 
         // 선택 완료 클릭했을 때
         chooseBtn.setOnClickListener {
+            Toast.makeText(this, "목표 선택 완료!", Toast.LENGTH_SHORT)
             var checkedText = todoAdapter.checkText // 체크된 텍스트 내용
             if (number != null) {
                 myRef.child("k-bee_database").child("todo${number}").setValue(checkedText)

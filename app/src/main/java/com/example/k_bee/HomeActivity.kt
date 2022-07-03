@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +39,14 @@ class HomeActivity : AppCompatActivity() {
     lateinit var todoImg5 : ImageView
     lateinit var todoImg6 : ImageView
 
+    var check1 : Boolean = false
+    var check2 : Boolean = false
+    var check3 : Boolean = false
+    var check4 : Boolean = false
+    var check5 : Boolean = false
+    var check6 : Boolean = false
+    var allCheck : Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -65,6 +74,62 @@ class HomeActivity : AppCompatActivity() {
         todoImg4 = findViewById(R.id.todo_check4)
         todoImg5 = findViewById(R.id.todo_check5)
         todoImg6 = findViewById(R.id.todo_check6)
+
+        myRef.child("k-bee_database").child("IsCheck1").get().addOnSuccessListener {
+            if (it.value == true) {
+                todoImg1.setImageResource(R.drawable.honey)
+                check1 = true
+            } else {
+                check1 = false
+            }
+        }
+        myRef.child("k-bee_database").child("IsCheck2").get().addOnSuccessListener {
+            if (it.value == true) {
+                todoImg2.setImageResource(R.drawable.honey)
+                check2 = true
+            } else {
+                check2 = false
+            }
+        }
+        myRef.child("k-bee_database").child("IsCheck3").get().addOnSuccessListener {
+            if (it.value == true) {
+                todoImg3.setImageResource(R.drawable.honey)
+                check3 = true
+            } else {
+                check3 = false
+            }
+        }
+        myRef.child("k-bee_database").child("IsCheck4").get().addOnSuccessListener {
+            if (it.value == true) {
+                todoImg4.setImageResource(R.drawable.honey)
+                check4 = true
+            } else {
+                check4 = false
+            }
+        }
+        myRef.child("k-bee_database").child("IsCheck5").get().addOnSuccessListener {
+            if (it.value == true) {
+                todoImg5.setImageResource(R.drawable.honey)
+                check5 = true
+            } else {
+                check5 = false
+            }
+        }
+        myRef.child("k-bee_database").child("IsCheck6").get().addOnSuccessListener {
+            if (it.value == true) {
+                todoImg6.setImageResource(R.drawable.honey)
+                check6 = true
+            } else {
+                check6 = false
+            }
+        }
+        myRef.child("k-bee_database").child("AllCheck").get().addOnSuccessListener {
+            if (it.value == true) {
+                allCheck = true
+            } else {
+                allCheck = false
+            }
+        }
 
         // 투두리스트 이미 채워 넣음
         myRef.child("k-bee_database").child("todo1").get().addOnSuccessListener {
@@ -110,42 +175,37 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // 버튼 눌렀을 때
+        // 목표 추가 버튼 눌렀을 때
         add1.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
             intent.putExtra("number", 1)
             startActivity(intent)
         }
-
         add2.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
             intent.putExtra("number", 2)
             startActivity(intent)
         }
-
         add3.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
             intent.putExtra("number", 3)
             startActivity(intent)
         }
-
         add4.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
             intent.putExtra("number", 4)
             startActivity(intent)
         }
-
         add5.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
             intent.putExtra("number", 5)
             startActivity(intent)
         }
-
         add6.setOnClickListener {
             // 리스트 추가 화면으로 이동
             var intent = Intent(this, ListActivity::class.java)
@@ -153,6 +213,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // 텍스트 눌렀을 때 목표 바꿀 수 있도록
         todo1.setOnClickListener {
             var intent = Intent(this, ListActivity::class.java)
             intent.putExtra("number", 1)
@@ -182,6 +243,153 @@ class HomeActivity : AppCompatActivity() {
             var intent = Intent(this, ListActivity::class.java)
             intent.putExtra("number", 6)
             startActivity(intent)
+        }
+
+        // 벌꿀집 이미지 클릭했을 때 색 채우기 (IsCheck == false 일 때)
+        todoImg1.setOnClickListener {
+            myRef.child("k-bee_database").child("IsCheck1").get().addOnSuccessListener {
+                if (it.value == false) { // 현재 상태 false인 경우
+                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    // 색 채우기
+                    todoImg1.setImageResource(R.drawable.honey)
+                    myRef.child("k-bee_database").child("IsCheck1").setValue(true) // IsCheck1 상태 true로 변경
+                    check1 = true
+                    // 모든 목표 다 달성
+                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                        myRef.child("k-bee_database").child("AllCheck").setValue(true)
+                        allCheck = true
+                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(this, ShareActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                else {
+                    todoImg1.setImageResource(R.drawable.empty)
+                    myRef.child("k-bee_database").child("IsCheck1").setValue(false) // 상태 false로 변경
+                    check1 = false
+                }
+            }
+        }
+        todoImg2.setOnClickListener {
+            myRef.child("k-bee_database").child("IsCheck2").get().addOnSuccessListener {
+                if (it.value == false) {
+                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    // 색 채우기
+                    todoImg2.setImageResource(R.drawable.honey)
+                    myRef.child("k-bee_database").child("IsCheck2").setValue(true) // IsCheck1 상태 true로 변경
+                    check2 = true
+                    // 모든 목표 다 달성
+                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                        myRef.child("k-bee_database").child("AllCheck").setValue(true)
+                        allCheck = true
+                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(this, ShareActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                else {
+                    todoImg2.setImageResource(R.drawable.empty)
+                    myRef.child("k-bee_database").child("IsCheck2").setValue(false) // 상태 false로 변경
+                    check2 = false
+                    Log.d("check2", check2.toString())
+                }
+            }
+        }
+        todoImg3.setOnClickListener {
+            myRef.child("k-bee_database").child("IsCheck3").get().addOnSuccessListener {
+                if (it.value == false) {
+                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    // 색 채우기
+                    todoImg3.setImageResource(R.drawable.honey)
+                    myRef.child("k-bee_database").child("IsCheck3").setValue(true) // IsCheck1 상태 true로 변경
+                    check3 = true
+                    // 모든 목표 다 달성
+                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                        myRef.child("k-bee_database").child("AllCheck").setValue(true)
+                        allCheck = true
+                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(this, ShareActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                else {
+                    todoImg3.setImageResource(R.drawable.empty)
+                    myRef.child("k-bee_database").child("IsCheck3").setValue(false) // 상태 false로 변경
+                    check3 = false
+                }
+            }
+        }
+        todoImg4.setOnClickListener {
+            myRef.child("k-bee_database").child("IsCheck4").get().addOnSuccessListener {
+                if (it.value == false) {
+                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    // 색 채우기
+                    todoImg4.setImageResource(R.drawable.honey)
+                    myRef.child("k-bee_database").child("IsCheck4").setValue(true) // IsCheck4 상태 true로 변경
+                    check4 = true
+                    // 모든 목표 다 달성
+                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                        myRef.child("k-bee_database").child("AllCheck").setValue(true)
+                        allCheck = true
+                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(this, ShareActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                else {
+                    todoImg4.setImageResource(R.drawable.empty)
+                    myRef.child("k-bee_database").child("IsCheck4").setValue(false) // 상태 false로 변경
+                    check4 = false
+                }
+            }
+        }
+        todoImg5.setOnClickListener {
+            myRef.child("k-bee_database").child("IsCheck5").get().addOnSuccessListener {
+                if (it.value == false) {
+                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    // 색 채우기
+                    todoImg5.setImageResource(R.drawable.honey)
+                    myRef.child("k-bee_database").child("IsCheck5").setValue(true) // IsCheck1 상태 true로 변경
+                    check5 = true
+                    // 모든 목표 다 달성
+                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                        myRef.child("k-bee_database").child("AllCheck").setValue(true)
+                        allCheck = true
+                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(this, ShareActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                else {
+                    todoImg5.setImageResource(R.drawable.empty)
+                    myRef.child("k-bee_database").child("IsCheck5").setValue(false) // 상태 false로 변경
+                    check5 = false
+                }
+            }
+        }
+        todoImg6.setOnClickListener {
+            myRef.child("k-bee_database").child("IsCheck6").get().addOnSuccessListener {
+                if (it.value == false) {
+                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    // 색 채우기
+                    todoImg6.setImageResource(R.drawable.honey)
+                    myRef.child("k-bee_database").child("IsCheck6").setValue(true) // 상태 true로 변경
+                    check6 = true
+                    // 모든 목표 다 달성
+                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                        myRef.child("k-bee_database").child("AllCheck").setValue(true) // 상태 true로 변경
+                        allCheck = true
+                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(this, ShareActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                else {
+                    todoImg6.setImageResource(R.drawable.empty)
+                    myRef.child("k-bee_database").child("IsCheck6").setValue(false) // 상태 false로 변경
+                    check6 = false
+                }
+            }
         }
     }
 }

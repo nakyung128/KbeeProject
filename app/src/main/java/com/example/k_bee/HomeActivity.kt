@@ -6,9 +6,15 @@ import android.os.Bundle
 import android.text.BoringLayout
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlin.properties.Delegates
 
 class HomeActivity : AppCompatActivity() {
@@ -22,10 +28,15 @@ class HomeActivity : AppCompatActivity() {
     lateinit var todo5 : TextView
     lateinit var add6 : FloatingActionButton
     lateinit var todo6 : TextView
+    lateinit var todoImg2 : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        // 실시간 db 관리 객체 얻어오기
+        val database : FirebaseDatabase = FirebaseDatabase.getInstance()
+        val myRef : DatabaseReference = database.getReference()
 
         add2 = findViewById(R.id.add2) // 추가 버튼
         todo2 = findViewById(R.id.todo2) // 텍스트뷰
@@ -37,6 +48,8 @@ class HomeActivity : AppCompatActivity() {
         todo5 = findViewById(R.id.todo5)
         add6 = findViewById(R.id.add6)
         todo6 = findViewById(R.id.todo6)
+
+        todoImg2 = findViewById(R.id.todo_check2)
 
         // 여기에서 false 해 줘서 문제인 듯
         var number2 = false
@@ -54,6 +67,10 @@ class HomeActivity : AppCompatActivity() {
             // 텍스트 추가
             todo2.visibility = View.VISIBLE
             todo2.text = checkText
+            // 이미지 바꾸기
+            todoImg2.setImageResource(R.drawable.honey)
+            myRef.child("k-bee_database").child("todo2").setValue(checkText)
+            myRef.child("k-bee_database").child("IsCheck2").setValue(true)
         }
         /*if (checkText != null) {
             if (number2) {

@@ -19,6 +19,9 @@
         android:theme="@style/Theme.K_bee"
         tools:targetApi="31">
         <activity
+            android:name=".FriendActivity"
+            android:exported="false" />
+        <activity
             android:name=".BadgeActivity"
             android:exported="false" />
         <activity
@@ -63,7 +66,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/path"></meta-data>
+                android:resource="@xml/path" />
         </provider>
     </application>
 

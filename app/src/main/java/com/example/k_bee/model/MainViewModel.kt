@@ -1,9 +1,11 @@
 package com.example.k_bee.model
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.k_bee.BadgeActivity
 import com.example.k_bee.R
 
 class MainViewModel : ViewModel() {

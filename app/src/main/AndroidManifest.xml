@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.k_bee">
-
     <!-- 인터넷 사용 권한 설정 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 외부 저장소 사용 권한 설정 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 외부 저장소 사용 권한 설정 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -20,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.K_bee"
         tools:targetApi="31">
-
+        <activity
+            android:name=".BadgeActivity"
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
@@ -55,8 +55,7 @@
                     android:host="oauth"
                     android:scheme="kakao1e237fb02326f3776d48f513ce1566cd" />
             </intent-filter>
-        </activity>
-        <!-- 외부 저장소 사용을 위한 FileProvider auth 추가. -->
+        </activity> <!-- 외부 저장소 사용을 위한 FileProvider auth 추가. -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.k_bee.fileprovider"
@@ -64,9 +63,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/path">
-
-            </meta-data>
+                android:resource="@xml/path"></meta-data>
         </provider>
     </application>
+
 </manifest>

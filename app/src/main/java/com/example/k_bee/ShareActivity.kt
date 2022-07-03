@@ -35,6 +35,7 @@ import java.io.*
 class ShareActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityShareBinding
+    lateinit var badge: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,8 @@ class ShareActivity : AppCompatActivity() {
         setUpLifeCycleOwner()
 
         setContentView(binding.root)
+
+
     }
 
     private fun initViewModel() {
@@ -177,6 +180,8 @@ class ShareActivity : AppCompatActivity() {
             textView.width
         }
 
+
+
         val height = (imageView.height + textView.height + title.height + margin).toInt()
 
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -192,6 +197,7 @@ class ShareActivity : AppCompatActivity() {
         val imageViewLeft = ((width - imageView.width) / 2).toFloat()
 
         canvas.drawBitmap(imageViewBitmap, imageViewLeft, (0).toFloat(), null)
+
 
         //아래는 TextView. 위에 ImageView와 같은 로직으로 비트맵으로 만든 후 캔버스에 그려준다.
         if(textView.length() > 0) {

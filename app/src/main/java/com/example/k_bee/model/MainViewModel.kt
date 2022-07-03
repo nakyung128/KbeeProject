@@ -3,10 +3,12 @@ package com.example.k_bee.model
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.k_bee.BadgeActivity
 import com.example.k_bee.R
+
 
 class MainViewModel : ViewModel() {
     // 뷰에 나타낼 값들, 라이브 데이터 형식
@@ -71,5 +73,7 @@ class MainViewModel : ViewModel() {
             content.value = "새로운 뱃지 획득!"
             title.value = "BEE-SIDE 스토리 인증"
         }
+
     }
+
 }

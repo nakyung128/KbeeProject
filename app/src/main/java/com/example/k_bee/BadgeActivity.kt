@@ -11,6 +11,9 @@ class BadgeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_badge)
 
+
+        // 배지 이미지 아이디
+        // val badge = resources.getIdentifier("badge", "int", "k_bee")
         val badge = findViewById<View>(R.id.badge1) as ImageView
 
 

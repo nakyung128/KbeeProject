@@ -99,7 +99,7 @@ class ShareActivity : AppCompatActivity() {
     fun instaShare(bgUri: Uri?, viewUri: Uri?) {
 // Define image asset URI
         val stickerAssetUri = Uri.parse(viewUri.toString())
-        val sourceApplication = "com.khs.instagramshareexampleproject"
+        val sourceApplication = "com.example.k_bee"
 
 // Instantiate implicit intent with ADD_TO_STORY action,
 // sticker asset, and background colors

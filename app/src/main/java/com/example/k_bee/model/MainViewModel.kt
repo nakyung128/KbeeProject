@@ -42,11 +42,10 @@ class MainViewModel : ViewModel() {
         )
 
         // 랜덤으로 나오는 건가? ㅜ 뭐지
-       randomBackgroundSetClick = View.OnClickListener {
+        randomBackgroundSetClick = View.OnClickListener {
             val idx = (Math.random() * 6).toInt()
             background.postValue(backgroundList[idx])
         }
-
         randomImageSetClick = View.OnClickListener {
             val idx = (Math.random() * 4).toInt()
             image.value = (imageList[idx])

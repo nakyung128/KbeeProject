@@ -7,7 +7,7 @@
     tools:context=".LoginActivity">
 
     <Button
-        android:id="@+id/numBadge"
+        android:id="@+id/ggBtn"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="444dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/instaShareBtn"
+        android:id="@+id/kkoBtn"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="492dp"

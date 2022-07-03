@@ -106,7 +106,7 @@ class HomeActivity : AppCompatActivity() {
         add3.setOnClickListener {
             // 리스트 추가 화면으로 이동
             number3 = true
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(this, ShareActivity::class.java)
             startActivity(intent)
         }
 

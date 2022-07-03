@@ -27,9 +27,9 @@
         <activity
             android:name=".ListActivity"
             android:exported="false" />
-        <!--<activity
-            android:name=".TodoActivity"
-            android:exported="false" />-->
+        <activity
+            android:name=".ShareActivity"
+            android:exported="false" />
         <activity
             android:name=".NicknameActivity"
             android:exported="false" />

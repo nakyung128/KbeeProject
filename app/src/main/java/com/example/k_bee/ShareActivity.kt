@@ -160,7 +160,7 @@ class ShareActivity : AppCompatActivity() {
         val image_w = (bitmap2.width * scale).toInt()
         val image_h = (bitmap2.height * scale).toInt()
         val resize = Bitmap.createScaledBitmap(bitmap2, image_w, image_h, true)
-        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        resize.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val byteArray: ByteArray = stream.toByteArray()
         val intent = Intent(this, BadgeActivity::class.java)
         intent.putExtra("badge", byteArray)

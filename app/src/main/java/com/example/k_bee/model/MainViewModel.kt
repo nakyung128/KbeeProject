@@ -16,13 +16,11 @@ class MainViewModel : ViewModel() {
     private var backgroundList = mutableListOf<Int>()
 
     // 뷰 모델에서 onClick 메서드 구현
-    var randomImageSetClick: View.OnClickListener
+    //var randomImageSetClick: View.OnClickListener
     var randomBackgroundSetClick: View.OnClickListener
 
     init {
-        image.value = R.drawable.badge1 // 임시
-        background.value = R.color.white
-        content.value = ""
+        // 기본
 
         imageList = mutableListOf(
             R.drawable.badge1,
@@ -41,14 +39,16 @@ class MainViewModel : ViewModel() {
             R.color.OrangeRed
         )
 
-        // 랜덤으로 나오는 건가? ㅜ 뭐지
+        // 이미지는 랜덤으로
+        val idx = (Math.random() * 4).toInt()
+        image.value = (imageList[idx])
+        background.value = R.color.white
+        content.value = "새로운 뱃지 획득!"
+
+        // 배경색 랜덤으로
         randomBackgroundSetClick = View.OnClickListener {
             val idx = (Math.random() * 6).toInt()
             background.postValue(backgroundList[idx])
-        }
-        randomImageSetClick = View.OnClickListener {
-            val idx = (Math.random() * 4).toInt()
-            image.value = (imageList[idx])
         }
     }
 }

@@ -4,12 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ListActivity : AppCompatActivity() {
     lateinit var todoAdapter: RecyclerItemAdapter
@@ -18,6 +23,9 @@ class ListActivity : AppCompatActivity() {
     lateinit var addBtn : Button
     lateinit var chooseBtn : Button
 
+    private var user : String = ""
+    private lateinit var auth : FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
@@ -25,6 +33,10 @@ class ListActivity : AppCompatActivity() {
         // 실시간 db 관리 객체 얻어오기
         val database : FirebaseDatabase = FirebaseDatabase.getInstance()
         val myRef : DatabaseReference = database.getReference()
+        auth = FirebaseAuth.getInstance()
+
+        // 유저 정보
+        user = auth.currentUser?.uid.toString()
 
         todoView = findViewById(R.id.recyclerView)
         addBtn = findViewById(R.id.addBtn) // 추가하기 버튼
@@ -33,7 +45,6 @@ class ListActivity : AppCompatActivity() {
         initRecycler()
 
         var number = intent.getIntExtra("number", 0)
-        Log.d("number", number.toString())
 
         // 화면 나갔다 오면 직접 추가한 목표가 사라짐. 수정해야 함.
         // 추가 버튼 클릭했을 때
@@ -51,8 +62,9 @@ class ListActivity : AppCompatActivity() {
         chooseBtn.setOnClickListener {
             Toast.makeText(this, "목표 선택 완료!", Toast.LENGTH_SHORT)
             var checkedText = todoAdapter.checkText // 체크된 텍스트 내용
+            todoAdapter.delItem(checkedText)
             if (number != null) {
-                myRef.child("k-bee_database").child("todo${number}").setValue(checkedText)
+                myRef.child("$user").child("todo${number}").setValue(checkedText)
             }
 
             // 홈 화면으로 이동하기
@@ -60,6 +72,14 @@ class ListActivity : AppCompatActivity() {
             var intent = Intent(this, HomeActivity::class.java)
             startActivity(intent) // 이동
         }
+
+        /*todoAdapter.setItemCheckBoxClickListener(object : RecyclerItemAdapter.ItemCheckBoxClickListener {
+            override fun onClick(view: View, position: Int, itemId: Long) {
+                CoroutineScope(Dispatchers.IO).launch {
+
+                }
+            }
+        })*/
     }
     private fun initRecycler() {
         todoAdapter = RecyclerItemAdapter(this)

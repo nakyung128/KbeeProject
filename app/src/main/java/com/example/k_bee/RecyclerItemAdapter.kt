@@ -23,6 +23,11 @@ class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<
         notifyDataSetChanged() // 갱신
     }
 
+    fun delItem(todo: String) {
+        datas.remove(todoData(todo))
+        notifyDataSetChanged() // 갱신
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -52,4 +57,12 @@ class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<
             }
         }
     }
+    /*interface ItemCheckBoxClickListener {
+        fun onClick(view: View, position: Int, itemId: Long)
+    }
+    private lateinit var itemChckBoxClickListener : ItemCheckBoxClickListener
+
+    fun setItemCheckBoxClickListener(itemCheckBoxClickListener: ItemCheckBoxClickListener) {
+        this.itemChckBoxClickListener = itemChckBoxClickListener
+    }*/
 }

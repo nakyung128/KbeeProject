@@ -33,7 +33,7 @@ class NicknameActivity : AppCompatActivity() {
         applyBtn.setOnClickListener {
             // 닉네임 db에 업로드
             // 메인 페이지로 이동
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
     }

@@ -33,7 +33,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffe997">
+                android:background="#ffe997"
+                android:id="@+id/level1">
 
                 // 응애벌 배지 모음
                 <TextView
@@ -84,7 +85,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="205dp"
-                android:background="#ffe273">
+                android:background="#ffe273"
+                android:id="@+id/level2">
 
                 // 꿀벌 배지 모음 (3-6)
                 <TextView
@@ -147,7 +149,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="341dp"
-                android:background="#ffdb4b">
+                android:background="#ffdb4b"
+                android:id="@+id/level3">
 
                 // 수벌 배지 모음 (7-14)
                 <TextView
@@ -250,7 +253,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="614dp"
                 android:layout_marginBottom="10dp"
-                android:background="#ffd400">
+                android:background="#ffd400"
+                android:id="@+id/level4">
 
                 // 여왕벌 배지 모음 (15-30)
 
@@ -438,19 +442,10 @@
                     android:layout_marginBottom="392dp"
                     app:srcCompat="@drawable/locked" />
 
-
             </RelativeLayout>
+
         </LinearLayout>
 
-
-
-
-
-
-
     </ScrollView>
-
-
-
 
 </LinearLayout>

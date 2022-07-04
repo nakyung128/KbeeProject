@@ -17,6 +17,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
+import java.time.Month
+import java.util.*
 import kotlin.properties.Delegates
 
 class HomeActivity : AppCompatActivity() {
@@ -39,6 +42,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var todoImg4 : ImageView
     lateinit var todoImg5 : ImageView
     lateinit var todoImg6 : ImageView
+    lateinit var weekText : TextView
 
     var check1 : Boolean = false
     var check2 : Boolean = false
@@ -47,6 +51,9 @@ class HomeActivity : AppCompatActivity() {
     var check5 : Boolean = false
     var check6 : Boolean = false
     var allCheck : Boolean = false
+
+    var month : String = ""
+    var week : String = ""
 
     private lateinit var auth : FirebaseAuth
 
@@ -107,6 +114,14 @@ class HomeActivity : AppCompatActivity() {
         todoImg4 = findViewById(R.id.todo_check4)
         todoImg5 = findViewById(R.id.todo_check5)
         todoImg6 = findViewById(R.id.todo_check6)
+
+        weekText = findViewById(R.id.now_week) // 이번 주
+
+        var calendar : Calendar = Calendar.getInstance()
+        month = (calendar.get(Calendar.MONTH) + 1).toString()
+        week = calendar.get(Calendar.WEEK_OF_MONTH).toString()
+
+        weekText.text = "${month}월 ${week}주차"
 
         myRef.child("$user").child("isCheck1").get().addOnSuccessListener {
             if (it.value == true) {

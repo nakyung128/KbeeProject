@@ -45,7 +45,6 @@ class ListActivity : AppCompatActivity() {
         initRecycler()
 
         var number = intent.getIntExtra("number", 0)
-        Log.d("number", number.toString())
 
         // 화면 나갔다 오면 직접 추가한 목표가 사라짐. 수정해야 함.
         // 추가 버튼 클릭했을 때

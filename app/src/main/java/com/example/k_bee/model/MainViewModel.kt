@@ -63,12 +63,8 @@ class MainViewModel : ViewModel() {
             title.value = "대단해요!"
         } else { // 아직 뱃지 남아 있을 때
             val idx = (Math.random() * imageList.size).toInt()
-            Log.d("img", imageList.size.toString())
             image.value = (imageList[idx])
-            imageList.removeAt(idx) // 받은 뱃지 리스트에서 제거
-            /*if (idx < imageList.size) {
-                imageList[idx]= imageList[idx + 1]
-            }*/
+            imageList.remove(imageList[idx]) // 받은 뱃지 리스트에서 제거
             background.value = R.color.white
             content.value = "새로운 뱃지 획득!"
             title.value = "BEE-SIDE 스토리 인증"

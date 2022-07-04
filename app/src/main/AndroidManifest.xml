@@ -28,6 +28,9 @@
             </intent-filter>
         </activity>/>
         <activity
+            android:name=".MypageActivity"
+            android:exported="false" />
+        <activity
             android:name=".FriendActivity"
             android:exported="false" />
         <activity

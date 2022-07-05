@@ -10,7 +10,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.k_bee.databinding.ActivityBadgeBinding.bind
+
 
 class RecyclerItemAdapter (private val context: Context) : RecyclerView.Adapter<RecyclerItemAdapter.ViewHolder>() {
 

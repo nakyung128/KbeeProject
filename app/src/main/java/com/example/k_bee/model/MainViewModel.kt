@@ -6,7 +6,6 @@ import android.view.View
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.k_bee.BadgeActivity
 import com.example.k_bee.R
 
 

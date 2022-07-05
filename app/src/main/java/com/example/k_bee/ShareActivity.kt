@@ -35,9 +35,10 @@ import java.io.*
 
 class ShareActivity : AppCompatActivity() {
 
-    lateinit var BadgeFragment : Fragment
+  //  lateinit var BadgeFragment : Fragment
     lateinit var binding: ActivityShareBinding
     lateinit var badge: ImageView
+    lateinit var BadgeFragment : Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,6 @@ class ShareActivity : AppCompatActivity() {
         setUpLifeCycleOwner()
 
         setContentView(binding.root)
-
 
     }
 
@@ -154,6 +154,8 @@ class ShareActivity : AppCompatActivity() {
     }
 
     private fun drawViewBitmap(): Bitmap {
+
+        BadgeFragment = BadgeFragment()
         val imageView = binding.iv
 
         // 배지 달성시 배지 도감으로 이동
@@ -167,8 +169,12 @@ class ShareActivity : AppCompatActivity() {
         val resize = Bitmap.createScaledBitmap(bitmap2, image_w, image_h, true)
         resize.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val byteArray: ByteArray = stream.toByteArray()
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, BadgeFragment).commit();
         val bundle = Bundle()
         bundle.putByteArray("badge", byteArray)
+        //fragment1로 번들 전달
+        BadgeFragment.arguments?.getBundle(bundle.toString())
 
         val intent = Intent(this, BadgeFragment::class.java)
         intent.putExtra("badge", byteArray)
@@ -184,7 +190,6 @@ class ShareActivity : AppCompatActivity() {
         } else {
             textView.width
         }
-
 
 
         val height = (imageView.height + textView.height + title.height + margin).toInt()

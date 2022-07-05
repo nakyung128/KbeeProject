@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -53,8 +54,10 @@ class LoginActivity : AppCompatActivity() {
             else if (tokenInfo != null) {
                 // 홈 화면으로 넘어가기
                 Toast.makeText(this, "정보 보기 성공", Toast.LENGTH_SHORT)
-                var intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, HomeFragment())
+                    .commit()
             }
         }
 
@@ -84,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
         val account = GoogleSignIn.getLastSignedInAccount(this)
         if (account !== null) { // 로그인 되어 있을 시에
             // 바로 메인 액티비티로 이동
-            //toMainActivity(auth.currentUser)
             moveNextPage()
         }
     }
@@ -143,8 +145,8 @@ class LoginActivity : AppCompatActivity() {
     private fun moveNextPage() {
         var currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            this.finish()
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -19,22 +19,5 @@ class FriendActivity : AppCompatActivity() {
 
         fbAuth = FirebaseAuth.getInstance()
         fbFirestore = FirebaseFirestore.getInstance()
-
-        /*var user = UserInfo()
-
-        user.email = fbAuth?.currentUser?.email
-        user.nickname = "나갱"
-        fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.set(user)*/
-
-        fbFirestore?.collection("users")?.get()?.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                for (i in task.result!!) {
-                    if (i.id == "나갱") {
-                        Toast.makeText(this, "이미 존재하는 닉네임입니다.", Toast.LENGTH_SHORT)
-                        Log.d("name", "이미 존재하는 이름")
-                    }
-                }
-            }
-        }
     }
 }

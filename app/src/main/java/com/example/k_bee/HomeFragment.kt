@@ -300,144 +300,177 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // 벌꿀집 이미지 클릭했을 때 색 채우기 (IsCheck == false 일 때)
         todoImg1.setOnClickListener {
-            myRef.child("$user").child("isCheck1").get().addOnSuccessListener {
-                if (it.value == false) { // 현재 상태 false인 경우
-                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
-                    // 색 채우기
-                    todoImg1.setImageResource(R.drawable.honey)
-                    myRef.child("$user").child("isCheck1").setValue(true) // IsCheck1 상태 true로 변경
-                    check1 = true
-                    // 모든 목표 다 달성
-                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
-                        myRef.child("$user").child("allCheck").setValue(true)
-                        allCheck = true
-                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(context, ShareActivity::class.java)
-                        startActivity(intent)
+            myRef.child("$user").child("todo1").get().addOnSuccessListener {
+                if (it.value != "") {
+                    myRef.child("$user").child("isCheck1").get().addOnSuccessListener {
+                        if (it.value == false) { // 현재 상태 false인 경우
+                            Toast.makeText(activity, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT).show()                    // 색 채우기
+                            todoImg1.setImageResource(R.drawable.honey)
+                            myRef.child("$user").child("isCheck1").setValue(true) // IsCheck1 상태 true로 변경
+                            check1 = true
+                            // 모든 목표 다 달성
+                            if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                                myRef.child("$user").child("allCheck").setValue(true)
+                                allCheck = true
+                                Toast.makeText(activity, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT).show()
+                                var intent = Intent(context, ShareActivity::class.java)
+                                startActivity(intent)
+                            }
+                        } else {
+                            todoImg1.setImageResource(R.drawable.empty)
+                            myRef.child("$user").child("isCheck1").setValue(false) // 상태 false로 변경
+                            check1 = false
+                        }
                     }
                 } else {
-                    todoImg1.setImageResource(R.drawable.empty)
-                    myRef.child("$user").child("isCheck1").setValue(false) // 상태 false로 변경
-                    check1 = false
+                    Toast.makeText(context, "목표 설정을 먼저 완료해 주세요!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
         todoImg2.setOnClickListener {
-            myRef.child("$user").child("isCheck2").get().addOnSuccessListener {
-                if (it.value == false) {
-                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
-                    // 색 채우기
-                    todoImg2.setImageResource(R.drawable.honey)
-                    myRef.child("$user").child("isCheck2").setValue(true) // IsCheck1 상태 true로 변경
-                    check2 = true
-                    // 모든 목표 다 달성
-                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
-                        myRef.child("$user").child("allCheck").setValue(true)
-                        allCheck = true
-                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(context, ShareActivity::class.java)
-                        startActivity(intent)
+            myRef.child("$user").child("todo2").get().addOnSuccessListener {
+                if (it.value != "") {
+                    myRef.child("$user").child("isCheck2").get().addOnSuccessListener {
+                        if (it.value == false) { // 현재 상태 false인 경우
+                            Toast.makeText(activity, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT).show()                    // 색 채우기
+                            todoImg2.setImageResource(R.drawable.honey)
+                            myRef.child("$user").child("isCheck2").setValue(true) // IsCheck1 상태 true로 변경
+                            check2 = true
+                            // 모든 목표 다 달성
+                            if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                                myRef.child("$user").child("allCheck").setValue(true)
+                                allCheck = true
+                                Toast.makeText(activity, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT).show()
+                                var intent = Intent(context, ShareActivity::class.java)
+                                startActivity(intent)
+                            }
+                        } else {
+                            todoImg2.setImageResource(R.drawable.empty)
+                            myRef.child("$user").child("isCheck2").setValue(false) // 상태 false로 변경
+                            check2 = false
+                        }
                     }
                 } else {
-                    todoImg2.setImageResource(R.drawable.empty)
-                    myRef.child("$user").child("isCheck2").setValue(false) // 상태 false로 변경
-                    check2 = false
+                    Toast.makeText(context, "목표 설정을 먼저 완료해 주세요!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
         todoImg3.setOnClickListener {
-            myRef.child("$user").child("isCheck3").get().addOnSuccessListener {
-                if (it.value == false) {
-                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
-                    // 색 채우기
-                    todoImg3.setImageResource(R.drawable.honey)
-                    myRef.child("$user").child("isCheck3").setValue(true) // IsCheck1 상태 true로 변경
-                    check3 = true
-                    // 모든 목표 다 달성
-                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
-                        myRef.child("$user").child("allCheck").setValue(true)
-                        allCheck = true
-                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(context, ShareActivity::class.java)
-                        startActivity(intent)
+            myRef.child("$user").child("todo3").get().addOnSuccessListener {
+                if (it.value != "") {
+                    myRef.child("$user").child("isCheck3").get().addOnSuccessListener {
+                        if (it.value == false) {
+                            Toast.makeText(activity, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT).show()
+                            // 색 채우기
+                            todoImg3.setImageResource(R.drawable.honey)
+                            myRef.child("$user").child("isCheck3").setValue(true) // IsCheck1 상태 true로 변경
+                            check3 = true
+                            // 모든 목표 다 달성
+                            if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                                myRef.child("$user").child("allCheck").setValue(true)
+                                allCheck = true
+                                Toast.makeText(activity, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT).show()
+                                var intent = Intent(context, ShareActivity::class.java)
+                                startActivity(intent)
+                            }
+                        } else {
+                            todoImg3.setImageResource(R.drawable.empty)
+                            myRef.child("$user").child("isCheck3").setValue(false) // 상태 false로 변경
+                            check3 = false
+                        }
                     }
                 } else {
-                    todoImg3.setImageResource(R.drawable.empty)
-                    myRef.child("$user").child("isCheck3").setValue(false) // 상태 false로 변경
-                    check3 = false
+                    Toast.makeText(context, "목표 설정을 먼저 완료해 주세요!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
         todoImg4.setOnClickListener {
-            myRef.child("$user").child("isCheck4").get().addOnSuccessListener {
-                if (it.value == false) {
-                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
-                    // 색 채우기
-                    todoImg4.setImageResource(R.drawable.honey)
-                    myRef.child("$user").child("isCheck4").setValue(true) // IsCheck4 상태 true로 변경
-                    check4 = true
-                    // 모든 목표 다 달성
-                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
-                        myRef.child("$user").child("allCheck").setValue(true)
-                        allCheck = true
-                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(context, ShareActivity::class.java)
-                        startActivity(intent)
+            myRef.child("$user").child("todo4").get().addOnSuccessListener {
+                if (it.value != "") {
+                    myRef.child("$user").child("isCheck4").get().addOnSuccessListener {
+                        if (it.value == false) {
+                            Toast.makeText(activity, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT).show()
+                            // 색 채우기
+                            todoImg4.setImageResource(R.drawable.honey)
+                            myRef.child("$user").child("isCheck4").setValue(true) // IsCheck4 상태 true로 변경
+                            check4 = true
+                            // 모든 목표 다 달성
+                            if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                                myRef.child("$user").child("allCheck").setValue(true)
+                                allCheck = true
+                                Toast.makeText(activity, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT).show()
+                                var intent = Intent(context, ShareActivity::class.java)
+                                startActivity(intent)
+                            }
+                        } else {
+                            todoImg4.setImageResource(R.drawable.empty)
+                            myRef.child("$user").child("isCheck4").setValue(false) // 상태 false로 변경
+                            check4 = false
+                        }
                     }
                 } else {
-                    todoImg4.setImageResource(R.drawable.empty)
-                    myRef.child("$user").child("isCheck4").setValue(false) // 상태 false로 변경
-                    check4 = false
+                    Toast.makeText(context, "목표 설정을 먼저 완료해 주세요!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
         todoImg5.setOnClickListener {
-            myRef.child("$user").child("isCheck5").get().addOnSuccessListener {
-                if (it.value == false) {
-                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
-                    // 색 채우기
-                    todoImg5.setImageResource(R.drawable.honey)
-                    myRef.child("$user").child("isCheck5").setValue(true) // IsCheck1 상태 true로 변경
-                    check5 = true
-                    // 모든 목표 다 달성
-                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
-                        myRef.child("$user").child("allCheck").setValue(true)
-                        allCheck = true
-                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(context, ShareActivity::class.java)
-                        startActivity(intent)
+            myRef.child("$user").child("todo5").get().addOnSuccessListener {
+                if (it.value != "") {
+                    myRef.child("$user").child("isCheck5").get().addOnSuccessListener {
+                        if (it.value == false) {
+                            Toast.makeText(activity, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT).show()
+                            // 색 채우기
+                            todoImg5.setImageResource(R.drawable.honey)
+                            myRef.child("$user").child("isCheck5").setValue(true) // IsCheck1 상태 true로 변경
+                            check5 = true
+                            // 모든 목표 다 달성
+                            if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                                myRef.child("$user").child("allCheck").setValue(true)
+                                allCheck = true
+                                Toast.makeText(activity, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT).show()
+                                var intent = Intent(context, ShareActivity::class.java)
+                                startActivity(intent)
+                            }
+                        } else {
+                            todoImg5.setImageResource(R.drawable.empty)
+                            myRef.child("$user").child("isCheck5").setValue(false) // 상태 false로 변경
+                            check5 = false
+                        }
                     }
                 } else {
-                    todoImg5.setImageResource(R.drawable.empty)
-                    myRef.child("$user").child("isCheck5").setValue(false) // 상태 false로 변경
-                    check5 = false
+                    Toast.makeText(context, "목표 설정을 먼저 완료해 주세요!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
         todoImg6.setOnClickListener {
-            myRef.child("$user").child("isCheck6").get().addOnSuccessListener {
-                if (it.value == false) {
-                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
-                    // 색 채우기
-                    todoImg6.setImageResource(R.drawable.honey)
-                    myRef.child("$user").child("isCheck6").setValue(true) // 상태 true로 변경
-                    check6 = true
-                    // 모든 목표 다 달성
-                    if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
-                        myRef.child("$user").child("allCheck").setValue(true) // 상태 true로 변경
-                        allCheck = true
-                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(context, ShareActivity::class.java)
-                        startActivity(intent)
+            myRef.child("$user").child("todo6").get().addOnSuccessListener {
+                if (it.value != "") {
+                    myRef.child("$user").child("isCheck6").get().addOnSuccessListener {
+                        if (it.value == false) {
+                            Toast.makeText(activity, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT).show()
+                            // 색 채우기
+                            todoImg6.setImageResource(R.drawable.honey)
+                            myRef.child("$user").child("isCheck6").setValue(true) // 상태 true로 변경
+                            check6 = true
+                            // 모든 목표 다 달성
+                            if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
+                                myRef.child("$user").child("allCheck").setValue(true) // 상태 true로 변경
+                                allCheck = true
+                                Toast.makeText(activity, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT).show()
+                                var intent = Intent(context, ShareActivity::class.java)
+                                startActivity(intent)
+                            }
+                        } else {
+                            todoImg6.setImageResource(R.drawable.empty)
+                            myRef.child("$user").child("isCheck6").setValue(false) // 상태 false로 변경
+                            check6 = false
+                        }
                     }
                 } else {
-                    todoImg6.setImageResource(R.drawable.empty)
-                    myRef.child("$user").child("isCheck6").setValue(false) // 상태 false로 변경
-                    check6 = false
+                    Toast.makeText(context, "목표 설정을 먼저 완료해 주세요!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
         return view
     }
 }

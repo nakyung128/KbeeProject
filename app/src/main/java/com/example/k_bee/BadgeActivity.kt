@@ -12,10 +12,8 @@ class BadgeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_badge)
 
-        lateinit var badgeList : Array<ImageView>
-
+        val badgeList : ArrayList<ImageView> = arrayListOf<ImageView>()
         val length = badgeList.size
-
 
         for (i in 0 until length) {
             // 배지 이미지 아이디 식별 (1-30)

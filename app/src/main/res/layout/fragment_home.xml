@@ -277,4 +277,14 @@
         app:layout_constraintRight_toRightOf="@id/todo_check3"
         app:layout_constraintTop_toTopOf="@id/todo_check3" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="친구 찾기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

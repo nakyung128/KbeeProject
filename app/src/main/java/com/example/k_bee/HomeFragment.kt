@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -38,6 +39,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     lateinit var todoImg6 : ImageView
     lateinit var weekText : TextView
 
+    lateinit var friendSearch : Button
+
     var check1 : Boolean = false
     var check2 : Boolean = false
     var check3 : Boolean = false
@@ -59,7 +62,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val myRef: DatabaseReference = database.getReference()
 
@@ -111,6 +113,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         todoImg4 = view.findViewById(R.id.todo_check4)
         todoImg5 = view.findViewById(R.id.todo_check5)
         todoImg6 = view.findViewById(R.id.todo_check6)
+
+        friendSearch = view.findViewById(R.id.button2)
+
+        friendSearch.setOnClickListener {
+            var intent = Intent(context, FriendActivity::class.java)
+            startActivity(intent)
+        }
 
         weekText = view.findViewById(R.id.now_week) // 이번 주
 

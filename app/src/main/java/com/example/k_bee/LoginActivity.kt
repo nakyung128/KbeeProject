@@ -1,8 +1,5 @@
 package com.example.k_bee
 
-import android.app.Activity
-import android.app.Application
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,18 +11,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.KakaoSdk
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.common.model.AuthErrorCause.*
-import com.kakao.sdk.common.model.ClientError
-import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 
 class LoginActivity : AppCompatActivity() {
@@ -35,6 +23,8 @@ class LoginActivity : AppCompatActivity() {
     private var auth: FirebaseAuth? = null // 객체의 공유 인스턴스
     private lateinit var client : GoogleSignInClient
     private var RC_SIGN_IN = 1000
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
             else if (tokenInfo != null) {
                 // 홈 화면으로 넘어가기
                 Toast.makeText(this, "정보 보기 성공", Toast.LENGTH_SHORT)
-                var intent = Intent(this, HomeActivity::class.java)
+                var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -153,7 +143,7 @@ class LoginActivity : AppCompatActivity() {
     private fun moveNextPage() {
         var currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             this.finish()
         }
     }

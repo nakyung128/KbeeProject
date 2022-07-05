@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">K_bee</string>
+    <string name="app_name">BEE-SIDE</string>
     <string name="firebase_web_client_id">1047188945068-aqb0jemirap0a5g22s3kugtdnsgkgad2.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

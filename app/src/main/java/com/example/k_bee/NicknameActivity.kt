@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import com.kakao.sdk.user.UserApiClient
 
 class NicknameActivity : AppCompatActivity() {
     lateinit var nameEdit: EditText
@@ -33,7 +30,7 @@ class NicknameActivity : AppCompatActivity() {
         applyBtn.setOnClickListener {
             // 닉네임 db에 업로드
             // 메인 페이지로 이동
-            var intent = Intent(this, HomeActivity::class.java)
+            var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

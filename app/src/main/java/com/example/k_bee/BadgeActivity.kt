@@ -7,7 +7,6 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 class BadgeActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_badge)
@@ -27,6 +26,7 @@ class BadgeActivity : AppCompatActivity() {
             badgeList[i].setImageBitmap(bitmap)
 
         }
+
 
 /*
         val badge = findViewById<View>(R.id.badge1) as ImageView

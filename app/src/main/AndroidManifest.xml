@@ -38,7 +38,7 @@
             android:name=".BadgeActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ListActivity"

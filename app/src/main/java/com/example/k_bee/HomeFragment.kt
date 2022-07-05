@@ -1,28 +1,22 @@
 package com.example.k_bee
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.BoringLayout
-import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
-import androidx.databinding.adapters.NumberPickerBindingAdapter.setValue
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import java.time.LocalDate
-import java.time.Month
 import java.util.*
-import kotlin.properties.Delegates
 
-class HomeActivity : AppCompatActivity() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     lateinit var add1 : FloatingActionButton
     lateinit var todo1 : TextView
@@ -60,14 +54,16 @@ class HomeActivity : AppCompatActivity() {
     // 사용자 고유 uid
     private var user : String = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        // 실시간 db 관리 객체 얻어오기
-        val database : FirebaseDatabase = FirebaseDatabase.getInstance()
-        val myRef : DatabaseReference = database.getReference()
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val myRef: DatabaseReference = database.getReference()
 
+        // 사용자 uid
         auth = FirebaseAuth.getInstance()
 
         // 유저 정보
@@ -95,29 +91,30 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        add1 = findViewById(R.id.add1) // 추가 버튼
-        todo1 = findViewById(R.id.todo1) // 텍스트뷰
-        add2 = findViewById(R.id.add2)
-        todo2 = findViewById(R.id.todo2)
-        add3 = findViewById(R.id.add3)
-        todo3 = findViewById(R.id.todo3)
-        add4 = findViewById(R.id.add4)
-        todo4 = findViewById(R.id.todo4)
-        add5 = findViewById(R.id.add5)
-        todo5 = findViewById(R.id.todo5)
-        add6 = findViewById(R.id.add6)
-        todo6 = findViewById(R.id.todo6)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        add1 = view.findViewById(R.id.add1) // 추가 버튼
+        todo1 = view.findViewById(R.id.todo1) // 텍스트뷰
+        add2 = view.findViewById(R.id.add2)
+        todo2 = view.findViewById(R.id.todo2)
+        add3 = view.findViewById(R.id.add3)
+        todo3 = view.findViewById(R.id.todo3)
+        add4 = view.findViewById(R.id.add4)
+        todo4 = view.findViewById(R.id.todo4)
+        add5 = view.findViewById(R.id.add5)
+        todo5 = view.findViewById(R.id.todo5)
+        add6 = view.findViewById(R.id.add6)
+        todo6 = view.findViewById(R.id.todo6)
 
-        todoImg1 = findViewById(R.id.todo_check1)
-        todoImg2 = findViewById(R.id.todo_check2)
-        todoImg3 = findViewById(R.id.todo_check3)
-        todoImg4 = findViewById(R.id.todo_check4)
-        todoImg5 = findViewById(R.id.todo_check5)
-        todoImg6 = findViewById(R.id.todo_check6)
+        todoImg1 = view.findViewById(R.id.todo_check1)
+        todoImg2 = view.findViewById(R.id.todo_check2)
+        todoImg3 = view.findViewById(R.id.todo_check3)
+        todoImg4 = view.findViewById(R.id.todo_check4)
+        todoImg5 = view.findViewById(R.id.todo_check5)
+        todoImg6 = view.findViewById(R.id.todo_check6)
 
-        weekText = findViewById(R.id.now_week) // 이번 주
+        weekText = view.findViewById(R.id.now_week) // 이번 주
 
-        var calendar : Calendar = Calendar.getInstance()
+        var calendar: Calendar = Calendar.getInstance()
         month = (calendar.get(Calendar.MONTH) + 1).toString()
         week = calendar.get(Calendar.WEEK_OF_MONTH).toString()
 
@@ -223,72 +220,71 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // 목표 추가 버튼 눌렀을 때
         add1.setOnClickListener {
-            // 리스트 추가 화면으로 이동
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 1)
             startActivity(intent)
         }
+
         add2.setOnClickListener {
             // 리스트 추가 화면으로 이동
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 2)
             startActivity(intent)
         }
         add3.setOnClickListener {
             // 리스트 추가 화면으로 이동
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 3)
             startActivity(intent)
         }
         add4.setOnClickListener {
             // 리스트 추가 화면으로 이동
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 4)
             startActivity(intent)
         }
         add5.setOnClickListener {
             // 리스트 추가 화면으로 이동
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 5)
             startActivity(intent)
         }
         add6.setOnClickListener {
             // 리스트 추가 화면으로 이동
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 6)
             startActivity(intent)
         }
 
         // 텍스트 눌렀을 때 목표 바꿀 수 있도록
         todo1.setOnClickListener {
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 1)
             startActivity(intent)
         }
         todo2.setOnClickListener {
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 2)
             startActivity(intent)
         }
         todo3.setOnClickListener {
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 3)
             startActivity(intent)
         }
         todo4.setOnClickListener {
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 4)
             startActivity(intent)
         }
         todo5.setOnClickListener {
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 5)
             startActivity(intent)
         }
         todo6.setOnClickListener {
-            var intent = Intent(this, ListActivity::class.java)
+            var intent = Intent(context, ListActivity::class.java)
             intent.putExtra("number", 6)
             startActivity(intent)
         }
@@ -297,7 +293,7 @@ class HomeActivity : AppCompatActivity() {
         todoImg1.setOnClickListener {
             myRef.child("$user").child("isCheck1").get().addOnSuccessListener {
                 if (it.value == false) { // 현재 상태 false인 경우
-                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
                     // 색 채우기
                     todoImg1.setImageResource(R.drawable.honey)
                     myRef.child("$user").child("isCheck1").setValue(true) // IsCheck1 상태 true로 변경
@@ -306,12 +302,11 @@ class HomeActivity : AppCompatActivity() {
                     if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
                         myRef.child("$user").child("allCheck").setValue(true)
                         allCheck = true
-                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(this, ShareActivity::class.java)
+                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(context, ShareActivity::class.java)
                         startActivity(intent)
                     }
-                }
-                else {
+                } else {
                     todoImg1.setImageResource(R.drawable.empty)
                     myRef.child("$user").child("isCheck1").setValue(false) // 상태 false로 변경
                     check1 = false
@@ -321,7 +316,7 @@ class HomeActivity : AppCompatActivity() {
         todoImg2.setOnClickListener {
             myRef.child("$user").child("isCheck2").get().addOnSuccessListener {
                 if (it.value == false) {
-                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
                     // 색 채우기
                     todoImg2.setImageResource(R.drawable.honey)
                     myRef.child("$user").child("isCheck2").setValue(true) // IsCheck1 상태 true로 변경
@@ -330,12 +325,11 @@ class HomeActivity : AppCompatActivity() {
                     if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
                         myRef.child("$user").child("allCheck").setValue(true)
                         allCheck = true
-                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(this, ShareActivity::class.java)
+                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(context, ShareActivity::class.java)
                         startActivity(intent)
                     }
-                }
-                else {
+                } else {
                     todoImg2.setImageResource(R.drawable.empty)
                     myRef.child("$user").child("isCheck2").setValue(false) // 상태 false로 변경
                     check2 = false
@@ -345,7 +339,7 @@ class HomeActivity : AppCompatActivity() {
         todoImg3.setOnClickListener {
             myRef.child("$user").child("isCheck3").get().addOnSuccessListener {
                 if (it.value == false) {
-                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
                     // 색 채우기
                     todoImg3.setImageResource(R.drawable.honey)
                     myRef.child("$user").child("isCheck3").setValue(true) // IsCheck1 상태 true로 변경
@@ -354,12 +348,11 @@ class HomeActivity : AppCompatActivity() {
                     if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
                         myRef.child("$user").child("allCheck").setValue(true)
                         allCheck = true
-                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(this, ShareActivity::class.java)
+                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(context, ShareActivity::class.java)
                         startActivity(intent)
                     }
-                }
-                else {
+                } else {
                     todoImg3.setImageResource(R.drawable.empty)
                     myRef.child("$user").child("isCheck3").setValue(false) // 상태 false로 변경
                     check3 = false
@@ -369,7 +362,7 @@ class HomeActivity : AppCompatActivity() {
         todoImg4.setOnClickListener {
             myRef.child("$user").child("isCheck4").get().addOnSuccessListener {
                 if (it.value == false) {
-                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
                     // 색 채우기
                     todoImg4.setImageResource(R.drawable.honey)
                     myRef.child("$user").child("isCheck4").setValue(true) // IsCheck4 상태 true로 변경
@@ -378,12 +371,11 @@ class HomeActivity : AppCompatActivity() {
                     if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
                         myRef.child("$user").child("allCheck").setValue(true)
                         allCheck = true
-                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(this, ShareActivity::class.java)
+                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(context, ShareActivity::class.java)
                         startActivity(intent)
                     }
-                }
-                else {
+                } else {
                     todoImg4.setImageResource(R.drawable.empty)
                     myRef.child("$user").child("isCheck4").setValue(false) // 상태 false로 변경
                     check4 = false
@@ -393,7 +385,7 @@ class HomeActivity : AppCompatActivity() {
         todoImg5.setOnClickListener {
             myRef.child("$user").child("isCheck5").get().addOnSuccessListener {
                 if (it.value == false) {
-                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
                     // 색 채우기
                     todoImg5.setImageResource(R.drawable.honey)
                     myRef.child("$user").child("isCheck5").setValue(true) // IsCheck1 상태 true로 변경
@@ -402,12 +394,11 @@ class HomeActivity : AppCompatActivity() {
                     if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
                         myRef.child("$user").child("allCheck").setValue(true)
                         allCheck = true
-                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(this, ShareActivity::class.java)
+                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(context, ShareActivity::class.java)
                         startActivity(intent)
                     }
-                }
-                else {
+                } else {
                     todoImg5.setImageResource(R.drawable.empty)
                     myRef.child("$user").child("isCheck5").setValue(false) // 상태 false로 변경
                     check5 = false
@@ -417,7 +408,7 @@ class HomeActivity : AppCompatActivity() {
         todoImg6.setOnClickListener {
             myRef.child("$user").child("isCheck6").get().addOnSuccessListener {
                 if (it.value == false) {
-                    Toast.makeText(this, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "환경 보호에 한 걸음 더!", Toast.LENGTH_SHORT)
                     // 색 채우기
                     todoImg6.setImageResource(R.drawable.honey)
                     myRef.child("$user").child("isCheck6").setValue(true) // 상태 true로 변경
@@ -426,17 +417,18 @@ class HomeActivity : AppCompatActivity() {
                     if (check1 && check2 && check3 && check4 && check5 && check6 && !allCheck) {
                         myRef.child("$user").child("allCheck").setValue(true) // 상태 true로 변경
                         allCheck = true
-                        Toast.makeText(this, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
-                        var intent = Intent(this, ShareActivity::class.java)
+                        Toast.makeText(context, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT)
+                        var intent = Intent(context, ShareActivity::class.java)
                         startActivity(intent)
                     }
-                }
-                else {
+                } else {
                     todoImg6.setImageResource(R.drawable.empty)
                     myRef.child("$user").child("isCheck6").setValue(false) // 상태 false로 변경
                     check6 = false
                 }
             }
         }
+
+        return view
     }
 }

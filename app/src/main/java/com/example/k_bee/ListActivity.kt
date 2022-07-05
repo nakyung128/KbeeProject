@@ -3,18 +3,12 @@ package com.example.k_bee
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ListActivity : AppCompatActivity() {
     lateinit var todoAdapter: RecyclerItemAdapter
@@ -69,7 +63,7 @@ class ListActivity : AppCompatActivity() {
 
             // 홈 화면으로 이동하기
             // 선택된 체크박스 텍스트 가져와서 인텐트로 전달.
-            var intent = Intent(this, HomeActivity::class.java)
+            var intent = Intent(this, MainActivity::class.java)
             startActivity(intent) // 이동
         }
 

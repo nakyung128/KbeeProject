@@ -26,6 +26,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.k_bee.model.MainViewModel
@@ -34,6 +35,7 @@ import java.io.*
 
 class ShareActivity : AppCompatActivity() {
 
+    lateinit var BadgeFragment : Fragment
     lateinit var binding: ActivityShareBinding
     lateinit var badge: ImageView
 
@@ -165,7 +167,10 @@ class ShareActivity : AppCompatActivity() {
         val resize = Bitmap.createScaledBitmap(bitmap2, image_w, image_h, true)
         resize.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val byteArray: ByteArray = stream.toByteArray()
-        val intent = Intent(this, BadgeActivity::class.java)
+        val bundle = Bundle()
+        bundle.putByteArray("badge", byteArray)
+
+        val intent = Intent(this, BadgeFragment::class.java)
         intent.putExtra("badge", byteArray)
         startActivity(intent)
 

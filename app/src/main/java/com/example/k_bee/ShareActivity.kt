@@ -224,7 +224,7 @@ class ShareActivity : AppCompatActivity() {
 
     private fun badgeUpload() {
 
-        val image : Drawable = binding.iv.getDrawable()
+        val image : Drawable = iv.getDrawable()
         val bitmap : Bitmap = (image as BitmapDrawable).getBitmap()
 
         val stream = ByteArrayOutputStream()

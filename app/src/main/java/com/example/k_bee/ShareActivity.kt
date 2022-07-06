@@ -15,6 +15,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -40,18 +41,12 @@ import java.io.*
 class ShareActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityShareBinding
-    val database: DatabaseReference = FirebaseDatabase.getInstance().reference
-    //val myRef: DatabaseReference = database.getReference()
+    val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    val myRef: DatabaseReference = database.getReference()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val badgeBtn : Button = findViewById(R.id.badgeBtn)
-
-        badgeBtn.setOnClickListener() {
-            badgeUpload()
-        }
 
         binding = ActivityShareBinding.inflate(layoutInflater)
 
@@ -60,6 +55,11 @@ class ShareActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        val badgeBtn : Button = findViewById(R.id.badgeBtn)
+
+        badgeBtn.setOnClickListener() {
+            badgeUpload()
+        }
     }
 
     private fun initViewModel() {
@@ -224,7 +224,7 @@ class ShareActivity : AppCompatActivity() {
 
     private fun badgeUpload() {
 
-        var image = binding.iv
+        val image : Drawable = binding.iv.getDrawable()
         val bitmap : Bitmap = (image as BitmapDrawable).getBitmap()
 
         val stream = ByteArrayOutputStream()
@@ -232,10 +232,10 @@ class ShareActivity : AppCompatActivity() {
         val uploadImage = stream.toByteArray()
         val simage = byteArrayToBinaryString(uploadImage)
 
-        val key : String = database.child("/badges").push().key!!
+        val key : String = myRef.child("/badges").push().key!!
         val childUpdates : MutableMap<String,Any> = HashMap()
         childUpdates["/badges/$key"] = simage.toString()
-        database.updateChildren(childUpdates)
+        myRef.updateChildren(childUpdates)
     }
 
     fun byteArrayToBinaryString(b: ByteArray) : StringBuilder {

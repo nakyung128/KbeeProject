@@ -313,7 +313,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                                 myRef.child("$user").child("allCheck").setValue(true)
                                 allCheck = true
                                 Toast.makeText(activity, "모든 목표를 다 달성했어요!", Toast.LENGTH_SHORT).show()
-                                var intent = Intent(context, ShareActivity::class.java)
+                                var intent = Intent(activity, ShareActivity::class.java)
                                 startActivity(intent)
                             }
                         } else {

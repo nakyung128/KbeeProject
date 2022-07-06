@@ -20,6 +20,7 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -30,18 +31,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.k_bee.model.MainViewModel
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_share.*
 import java.io.*
 
 
 class ShareActivity : AppCompatActivity() {
 
-  //  lateinit var BadgeFragment : Fragment
     lateinit var binding: ActivityShareBinding
-    //lateinit var badge: ImageView
-    //lateinit var BadgeFragment : Fragment
+    val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+    //val myRef: DatabaseReference = database.getReference()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val badgeBtn : Button = findViewById(R.id.badgeBtn)
+
+        badgeBtn.setOnClickListener() {
+            badgeUpload()
+        }
 
         binding = ActivityShareBinding.inflate(layoutInflater)
 
@@ -100,6 +110,7 @@ class ShareActivity : AppCompatActivity() {
             }
         }
     }
+
     fun instaShare(bgUri: Uri?, viewUri: Uri?) {
 // Define image asset URI
         val stickerAssetUri = Uri.parse(viewUri.toString())
@@ -137,6 +148,7 @@ class ShareActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
     private fun drawBackgroundBitmap(): Bitmap {
         //기기 해상도를 가져옴.
         val backgroundWidth = resources.displayMetrics.widthPixels
@@ -155,33 +167,7 @@ class ShareActivity : AppCompatActivity() {
 
     private fun drawViewBitmap(): Bitmap {
 
-        //BadgeFragment = BadgeFragment()
         val imageView = binding.iv
-
-        // 배지 달성시 배지 도감으로 이동
-        /*var badge : ImageView = binding.iv
-
-        val stream = ByteArrayOutputStream()
-        val bitmap2 = (badge.getDrawable() as BitmapDrawable).bitmap
-        val scale = (1024 / bitmap2.width.toFloat())
-        val image_w = (bitmap2.width * scale).toInt()
-        val image_h = (bitmap2.height * scale).toInt()
-        val resize = Bitmap.createScaledBitmap(bitmap2, image_w, image_h, true)
-        resize.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        val byteArray: ByteArray = stream.toByteArray()
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, BadgeFragment).commit();
-        
-        val bundle = Bundle()
-        bundle.putByteArray("badge", byteArray)
-
-        //fragment1로 번들 전달
-        BadgeFragment.arguments?.getBundle(bundle.toString())
-
-        val intent = Intent(this, BadgeFragment::class.java)
-        intent.putExtra("badge", byteArray)
-        startActivity(intent)*/
-
         val textView = binding.tv
         val title = binding.textView
 
@@ -192,7 +178,6 @@ class ShareActivity : AppCompatActivity() {
         } else {
             textView.width
         }
-
 
         val height = (imageView.height + textView.height + title.height + margin).toInt()
 
@@ -233,6 +218,48 @@ class ShareActivity : AppCompatActivity() {
         }
 
         return bitmap
+    }
+
+
+
+    private fun badgeUpload() {
+
+        var image = binding.iv
+        val bitmap : Bitmap = (image as BitmapDrawable).getBitmap()
+
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        val uploadImage = stream.toByteArray()
+        val simage = byteArrayToBinaryString(uploadImage)
+
+        val key : String = database.child("/badges").push().key!!
+        val childUpdates : MutableMap<String,Any> = HashMap()
+        childUpdates["/badges/$key"] = simage.toString()
+        database.updateChildren(childUpdates)
+    }
+
+    fun byteArrayToBinaryString(b: ByteArray) : StringBuilder {
+        var sb : StringBuilder = StringBuilder()
+
+        for (i in 0 until b.size)
+        {
+            sb.append(byteToBinaryString(b[i]))
+        }
+
+        return sb
+    }
+
+    fun byteToBinaryString(n : Byte) : String {
+        var sb: StringBuilder = StringBuilder("00000000")
+        for (bit in 0 until 8)
+        {
+            if ((n.toInt().shr(bit) and 1) > 0)
+            {
+                sb.setCharAt(7 - bit, '1')
+            }
+        }
+
+        return sb.toString()
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)

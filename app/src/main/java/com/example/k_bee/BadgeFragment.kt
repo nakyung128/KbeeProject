@@ -17,7 +17,7 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
     {
         super.onViewCreated(view, savedInstanceState)
 
-        badgeList = ArrayList(30)
+        /*badgeList = ArrayList(30)
 
         val length = badgeList.size
 
@@ -27,16 +27,9 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
             val badgeID = "badge" + (i + 1)
             val resID = resources.getIdentifier(badgeID, "id", "packageName")
             badgeList[i] = view.findViewById(resID) as ImageView
-        }
+        }*/
 
         // ShareActivity 에서 배지 이미지 불러오기
-        val byteArray = arguments?.getByteArray("badge")
-        val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
-
-        for (i in 0 until 30)
-        {
-            badgeList[i].setImageBitmap(bitmap)
-        }
 
     }
 

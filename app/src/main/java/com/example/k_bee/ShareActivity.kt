@@ -37,8 +37,8 @@ class ShareActivity : AppCompatActivity() {
 
   //  lateinit var BadgeFragment : Fragment
     lateinit var binding: ActivityShareBinding
-    lateinit var badge: ImageView
-    lateinit var BadgeFragment : Fragment
+    //lateinit var badge: ImageView
+    //lateinit var BadgeFragment : Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,11 +155,11 @@ class ShareActivity : AppCompatActivity() {
 
     private fun drawViewBitmap(): Bitmap {
 
-        BadgeFragment = BadgeFragment()
+        //BadgeFragment = BadgeFragment()
         val imageView = binding.iv
 
         // 배지 달성시 배지 도감으로 이동
-        var badge : ImageView = binding.iv
+        /*var badge : ImageView = binding.iv
 
         val stream = ByteArrayOutputStream()
         val bitmap2 = (badge.getDrawable() as BitmapDrawable).bitmap
@@ -180,7 +180,7 @@ class ShareActivity : AppCompatActivity() {
 
         val intent = Intent(this, BadgeFragment::class.java)
         intent.putExtra("badge", byteArray)
-        startActivity(intent)
+        startActivity(intent)*/
 
         val textView = binding.tv
         val title = binding.textView

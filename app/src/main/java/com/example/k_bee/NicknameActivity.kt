@@ -32,11 +32,22 @@ class NicknameActivity : AppCompatActivity() {
 
         var user = UserInfo()
 
-        // 중복 확인 버튼 눌렀을 때 수정해야 함
         applyBtn.setOnClickListener {
             var name = nameEdit.text.toString()
             Log.d("nickname", name)
-            fbFirestore?.collection("users")?.whereEqualTo("nickname", "$name")?.get()?.addOnCompleteListener { task ->
+            // 닉네임, 이메일 db에 업로드
+            // 처음 정보 저장
+            user.nickname = nameEdit.text.toString()
+            user.email = fbAuth?.currentUser?.email
+            user.level = "1" // 레벨 초기 설정
+            user.intro = "반가워요!"
+            fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.set(user)
+            // 메인 페이지로 이동
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+            // 중복 확인
+            /*fbFirestore?.collection("users")?.whereEqualTo("nickname", "$name")?.get()?.addOnCompleteListener { task ->
                 if (task.isSuccessful) { // 중복이면
                     Toast.makeText(this, "이미 존재하는 닉네임입니다.", Toast.LENGTH_SHORT).show()
                 }
@@ -53,7 +64,7 @@ class NicknameActivity : AppCompatActivity() {
                     var intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
-            }
+            }*/
         }
     }
 }

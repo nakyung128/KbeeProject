@@ -54,6 +54,7 @@ class ListActivity : AppCompatActivity() {
 
         // 선택 완료 클릭했을 때
         chooseBtn.setOnClickListener {
+            // 중복 아닐 경우에만 선택되도록
             Toast.makeText(this, "목표 선택 완료!", Toast.LENGTH_SHORT)
             var checkedText = todoAdapter.checkText // 체크된 텍스트 내용
             todoAdapter.delItem(checkedText)

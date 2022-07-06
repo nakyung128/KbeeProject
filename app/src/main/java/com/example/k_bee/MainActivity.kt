@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         loadFragment(HomeFragment())
 
+        bn.itemIconTintList = null
+
         bn.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab_home -> {

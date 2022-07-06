@@ -4,7 +4,8 @@
         android:id="@+id/tab_home"
         android:enabled="true"
         android:icon="@drawable/menu1"
-        android:title="홈"></item>
+        android:title="홈">
+    </item>
     <item
         android:id="@+id/tab_badge"
         android:enabled="true"

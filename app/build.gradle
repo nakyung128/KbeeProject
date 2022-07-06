@@ -13,7 +13,7 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('C:\\src\\KbeeProject\\app\\HashKey.jks')
+            storeFile file('C:\\TAVE\\KbeeProject\\app\\HashKey.jks')
             storePassword 'honeycom'
             keyAlias 'HashKey'
             keyPassword 'honeycom'
@@ -78,6 +78,10 @@ dependencies {
 
     // gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+
+    // selector
+    implementation 'com.android.support:design:32.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
 
 }
 

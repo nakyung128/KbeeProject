@@ -71,9 +71,10 @@ class MypageFragment : Fragment(R.layout.fragment_mypage) {
                 tvEmail.text = email
             }
 
-        // 자기소개 클릭했을 때 수정 다이얼로그 띄우기
+        // 자기소개 클릭했을 때 수정하는 창 띄우기
         tvIntro.setOnClickListener {
-
+            var intent = Intent(context, IntroActivity::class.java)
+            startActivity(intent)
         }
 
         // 이미지 클릭했을 때 사진 바꾸기

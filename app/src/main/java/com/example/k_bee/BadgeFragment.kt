@@ -10,21 +10,14 @@ import android.widget.ImageView
 
 class BadgeFragment : Fragment(R.layout.fragment_badge) {
 
-    lateinit var badge: ImageView
+    var badgeList : ArrayList<ImageView> = arrayListOf<ImageView>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_badge, container, false)
-        badge = view.findViewById(R.id.badge1)
-        val byteArray = arguments?.getByteArray("badge")
-        val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
 
-        badge.setImageBitmap(bitmap)
+    private fun onCreateView(view:View, savedInstanceState:Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
 
-        /*badgeList = ArrayList(30)
+        badgeList = ArrayList(30)
 
         val length = badgeList.size
 
@@ -43,10 +36,11 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
         for (i in 0 until 30)
         {
             badgeList[i].setImageBitmap(bitmap)
-        }*/
-        return view
+        }
+
     }
-}
+
+
 
 
         /*for (i in 0 until 30)
@@ -77,5 +71,8 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
 
    badge.setImageBitmap(bitmap)*/
 
+
+
+}
 
 

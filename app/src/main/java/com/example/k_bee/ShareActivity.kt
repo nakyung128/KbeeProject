@@ -155,12 +155,11 @@ class ShareActivity : AppCompatActivity() {
 
     private fun drawViewBitmap(): Bitmap {
 
-        // fragment 생성
         BadgeFragment = BadgeFragment()
         val imageView = binding.iv
 
         // 배지 달성시 배지 도감으로 이동
-        val badge : ImageView = binding.iv
+        var badge : ImageView = binding.iv
 
         val stream = ByteArrayOutputStream()
         val bitmap2 = (badge.getDrawable() as BitmapDrawable).bitmap
@@ -171,12 +170,17 @@ class ShareActivity : AppCompatActivity() {
         resize.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val byteArray: ByteArray = stream.toByteArray()
 
-        // ShareActivity에 BadgeFragment를 띄워줌
-        supportFragmentManager.beginTransaction().replace(R.id.frame_layout, BadgeFragment()).commit()
-
-        // bundle 객체 생성, 값 저장
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, BadgeFragment).commit();
+        
         val bundle = Bundle()
         bundle.putByteArray("badge", byteArray)
+
+        //fragment1로 번들 전달
+        BadgeFragment.arguments?.getBundle(bundle.toString())
+
+        val intent = Intent(this, BadgeFragment::class.java)
+        intent.putExtra("badge", byteArray)
+        startActivity(intent)
 
         val textView = binding.tv
         val title = binding.textView

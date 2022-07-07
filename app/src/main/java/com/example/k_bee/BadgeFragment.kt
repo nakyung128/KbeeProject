@@ -23,12 +23,14 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
     // 사용자 고유 uid
     private var user : String = ""
 
+    val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    val myRef: DatabaseReference = database.getReference()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        val myRef: DatabaseReference = database.getReference()
+
 
         val view = inflater.inflate(R.layout.fragment_badge, container, false)
 
@@ -50,6 +52,7 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
 
         return view
     }
+
     fun binaryStringToByteArray(s: String) : ByteArray {
         val count : Int = s.length / 8
         val b = ByteArray(count)

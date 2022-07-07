@@ -224,7 +224,6 @@ class ShareActivity : AppCompatActivity() {
     }
 
 
-
     private fun badgeUpload() {
         // 사용자 uid
         auth = FirebaseAuth.getInstance()

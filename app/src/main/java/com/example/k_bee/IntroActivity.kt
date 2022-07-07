@@ -20,6 +20,8 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
+        val mypageFragment = MypageFragment()
+
         fbAuth = FirebaseAuth.getInstance()
         fbFirestore = FirebaseFirestore.getInstance()
 
@@ -32,10 +34,12 @@ class IntroActivity : AppCompatActivity() {
             fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.update("intro", intro)
 
             // 마이 페이지로 이동
-            supportFragmentManager
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+           /* supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.frame_layout, MypageFragment())
-                .commit()
+                .replace(R.id.frame_layout, mypageFragment)
+                .commit()*/
         }
     }
 }

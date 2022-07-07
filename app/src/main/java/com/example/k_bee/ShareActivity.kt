@@ -28,10 +28,12 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.k_bee.model.MainViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_share.*
@@ -43,6 +45,7 @@ class ShareActivity : AppCompatActivity() {
     lateinit var binding: ActivityShareBinding
     val database: FirebaseDatabase = FirebaseDatabase.getInstance()
     val myRef: DatabaseReference = database.getReference()
+    private lateinit var auth : FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -223,19 +226,24 @@ class ShareActivity : AppCompatActivity() {
 
 
     private fun badgeUpload() {
+        // 사용자 uid
+        auth = FirebaseAuth.getInstance()
 
-        val image : Drawable = iv.getDrawable()
-        val bitmap : Bitmap = (image as BitmapDrawable).getBitmap()
+        val imgView = binding.iv
+        val image : Drawable = imgView.drawable
+        val bitmap : Bitmap = image.toBitmap()
 
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val uploadImage = stream.toByteArray()
         val simage = byteArrayToBinaryString(uploadImage)
 
-        val key : String = myRef.child("/badges").push().key!!
+        myRef.child(auth.currentUser?.uid.toString()).child("badge").setValue(simage.toString())
+
+        /*val key : String = myRef.child("/badges").push().key!!
         val childUpdates : MutableMap<String,Any> = HashMap()
         childUpdates["/badges/$key"] = simage.toString()
-        myRef.updateChildren(childUpdates)
+        myRef.updateChildren(childUpdates)*/
     }
 
     fun byteArrayToBinaryString(b: ByteArray) : StringBuilder {

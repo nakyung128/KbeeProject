@@ -37,6 +37,7 @@ class MainViewModel : ViewModel() {
     // 뷰 모델에서 onClick 메서드 구현
     //var randomImageSetClick: View.OnClickListener
     var randomBackgroundSetClick: View.OnClickListener
+    var badgeBtnClick : View.OnClickListener
 
     init {
         // 기본
@@ -64,6 +65,10 @@ class MainViewModel : ViewModel() {
         randomBackgroundSetClick = View.OnClickListener {
             val idx = (Math.random() * 6).toInt()
             background.postValue(backgroundList[idx])
+        }
+
+        badgeBtnClick = View.OnClickListener {
+
         }
 
         // 얻은 배지 firebase 로 이동

@@ -235,11 +235,11 @@ class ShareActivity : AppCompatActivity() {
 
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        val uploadImage = stream.toByteArray()
-        val simage = byteArrayToBinaryString(uploadImage)
-        //val strBitmap = BitmapToString(bitmap)
+        //val uploadImage = stream.toByteArray()
+        //val simage = byteArrayToBinaryString(uploadImage)
+        val strBitmap = BitmapToString(bitmap)
 
-        myRef.child(auth.currentUser?.uid.toString()).child("badge").setValue(simage.toString())
+        myRef.child(auth.currentUser?.uid.toString()).child("badge").setValue(strBitmap)
 
         /*val key : String = myRef.child("/badges").push().key!!
         val childUpdates : MutableMap<String,Any> = HashMap()
@@ -249,7 +249,7 @@ class ShareActivity : AppCompatActivity() {
 
     fun BitmapToString(bitmap: Bitmap): String? {
         val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos)
         val bytes: ByteArray = baos.toByteArray()
         return Base64.encodeToString(bytes, Base64.DEFAULT)
     }

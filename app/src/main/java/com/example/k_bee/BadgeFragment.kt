@@ -6,7 +6,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +14,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
+import java.io.*
 import kotlin.experimental.or
 
 class BadgeFragment : Fragment(R.layout.fragment_badge) {
@@ -44,14 +42,15 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
         myRef.child("$user").child("badge").get().addOnSuccessListener {
             if (it.value != null) {
                 val image : String = it.value.toString()
-                //val imgBitmap : Bitmap? = StringToBitmap(image)
+                val imgBitmap : Bitmap? = StringToBitmap(image)
+                //resizeBitmap(imgBitmap, 1024)
                 //Log.d("imgBitmap", imgBitmap.toString())
                 //val drawable = BitmapDrawable(imgBitmap)
-                val b : ByteArray = binaryStringToByteArray(image)
-                val stream = ByteArrayInputStream(b)
+                //val b : ByteArray = binaryStringToByteArray(image)
+                //val stream = ByteArrayInputStream(b)
                 //Log.d("stream", stream.toString())
-                val downImg = Drawable.createFromStream(stream, "image")
-                badge1.setImageDrawable(downImg)
+                //val downImg = Drawable.createFromStream(stream, "image")
+                badge1.setImageBitmap(imgBitmap)
             }
         }
         return view
@@ -85,11 +84,60 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
              val encodeByte: ByteArray =
                  Base64.decode(encodedString, Base64.DEFAULT)
              BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
+
          } catch (e: Exception) {
              e.message
-             null
+            return null
          }
+
     }
+
+    fun convertStreamToString(`is`: BufferedInputStream): String? {
+        val reader = BufferedReader(InputStreamReader(`is`))
+        val sb = StringBuilder()
+        var line: String? = null
+        try {
+            while (reader.readLine().also { line = it } != null) {
+                sb.append(line).append('\n')
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            try {
+                `is`.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        return sb.toString()
+    }
+
+    /*fun resizeBitmap(source: Bitmap?, maxLength: Int): Bitmap? {
+        try {
+            if (source!!.height >= source.width) {
+                if (source.height <= maxLength) { // if image height already smaller than the required height
+                    return source
+                }
+
+                val aspectRatio = source.width.toDouble() / source.height.toDouble()
+                val targetWidth = (maxLength * aspectRatio).toInt()
+                val result = Bitmap.createScaledBitmap(source, targetWidth, maxLength, false)
+                return result
+            } else {
+                if (source.width <= maxLength) { // if image width already smaller than the required width
+                    return source
+                }
+
+                val aspectRatio = source.height.toDouble() / source.width.toDouble()
+                val targetHeight = (maxLength * aspectRatio).toInt()
+
+                val result = Bitmap.createScaledBitmap(source, maxLength, targetHeight, false)
+                return result
+            }
+        } catch (e: Exception) {
+            return source
+        }
+    }*/
 }
 
 
@@ -112,9 +160,6 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
         // ShareActivity 에서 배지 이미지 불러오기
 
     }
-
-
-
 
         /*for (i in 0 until 30)
         {

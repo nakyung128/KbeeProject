@@ -1,5 +1,8 @@
 package com.example.k_bee
 
+import android.content.Context
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
@@ -19,11 +22,16 @@ import kotlin.experimental.or
 
 class BadgeFragment : Fragment(R.layout.fragment_badge) {
 
-    //var badgeList: ArrayList<ImageView> = arrayListOf<ImageView>()
-    lateinit var badge1: ImageView
     private lateinit var auth : FirebaseAuth
     // 사용자 고유 uid
     private var user : String = ""
+
+    lateinit var badge1 : ImageView
+    lateinit var badge2 : ImageView
+    lateinit var badge3 : ImageView
+    lateinit var badge4: ImageView
+    lateinit var badge5 : ImageView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,50 +42,52 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
         val myRef: DatabaseReference = database.getReference()
         val view = inflater.inflate(R.layout.fragment_badge, container, false)
 
+        var badgeList = arrayOfNulls<ImageView?>(5)
+
         auth = FirebaseAuth.getInstance() // 사용자 uid
         user = auth.currentUser?.uid.toString() // 유저 정보
+
+        badge1 = view.findViewById(R.id.badge1)
+        badge2 = view.findViewById(R.id.badge2)
+        badge3 = view.findViewById(R.id.badge3)
+        badge4 = view.findViewById(R.id.badge4)
+        badge5 = view.findViewById(R.id.badge5)
+
+
+        //val length = badgeList.size
+
 
         badge1 = view.findViewById(R.id.badge1)
 
 
 
-        myRef.child("$user").child("badge").get().addOnSuccessListener {
-            if (it.value != null) {
-                val image : String = it.value.toString()
-                val imgBitmap : Bitmap? = StringToBitmap(image)
-                //resizeBitmap(imgBitmap, 1024)
-                //Log.d("imgBitmap", imgBitmap.toString())
-                //val drawable = BitmapDrawable(imgBitmap)
-                //val b : ByteArray = binaryStringToByteArray(image)
-                //val stream = ByteArrayInputStream(b)
-                //Log.d("stream", stream.toString())
-                //val downImg = Drawable.createFromStream(stream, "image")
-                badge1.setImageBitmap(imgBitmap)
+        // 아이디 식별
+        /*for (i in 0 until length)
+        {
+            val badgeID = "badge" + (i + 1)
+            val resID = resources.getIdentifier(badgeID, "id", "packageName")
+            badgeList[i] = view.findViewById(resID) as ImageView
+        }*/
+
+        myRef.child("$user").child("num").get().addOnSuccessListener {
+            var num = it.value.toString()
+            for (i in 0 until badgeList.size) {
+                myRef.child("$user").child("badge${i+1}").get().addOnSuccessListener {
+                    if (it.value != null) {
+                        val image : String = it.value.toString()
+                        val imgBitmap : Bitmap? = StringToBitmap(image)
+                        val badgeID : String = "badge" + (i + 1)
+                        /*val pi  = PackageInfo()
+                        val packageName = pi.packageName*/
+                        val resID = requireContext().resources.getIdentifier(badgeID, "id", requireContext().packageName)
+                        //var badgeName : ImageView = view.findViewById(resID)
+                        badgeList[i] = view.findViewById(resID) as ImageView
+                        badge1.setImageBitmap(imgBitmap)
+                    }
+                }
             }
         }
         return view
-    }
-
-    fun binaryStringToByteArray(s: String) : ByteArray {
-        val count : Int = s.length / 8
-        val b = ByteArray(count)
-
-        for (i in 1 until count) {
-            val t = s.substring((i-1)*8, i*8)
-            b[i-1] = binaryStringToByte(t)
-        }
-        return b
-    }
-
-    fun binaryStringToByte(s: String) : Byte {
-        var ret : Byte
-        var total : Byte = 0
-
-        for (i in 0 until 8) {
-            ret = if (s.get(7-i) == '1') (1.shl(i)).toByte() else 0
-            total = (ret.or(total))
-        }
-        return total
     }
 
     // String을 Bitmap으로 변환시켜주는 함수

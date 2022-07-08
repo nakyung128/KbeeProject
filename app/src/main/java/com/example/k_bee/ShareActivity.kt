@@ -47,6 +47,7 @@ class ShareActivity : AppCompatActivity() {
     val database: FirebaseDatabase = FirebaseDatabase.getInstance()
     val myRef: DatabaseReference = database.getReference()
     private lateinit var auth : FirebaseAuth
+    //private lateinit var number : Number
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,11 +60,9 @@ class ShareActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        val badgeBtn : Button = findViewById(R.id.badgeBtn)
+        //val badgeBtn : Button = findViewById(R.id.badgeBtn)
 
-        badgeBtn.setOnClickListener() {
-            badgeUpload()
-        }
+        badgeUpload()
     }
 
     private fun initViewModel() {
@@ -229,17 +228,28 @@ class ShareActivity : AppCompatActivity() {
         // 사용자 uid
         auth = FirebaseAuth.getInstance()
 
-        val imgView = binding.iv
-        val image : Drawable = imgView.drawable
-        val bitmap : Bitmap = image.toBitmap()
+        var number : Int = 0
 
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        //val uploadImage = stream.toByteArray()
-        //val simage = byteArrayToBinaryString(uploadImage)
-        val strBitmap = BitmapToString(bitmap)
+        myRef.child(auth.currentUser?.uid.toString()).child("num").get().addOnSuccessListener {
+            number = it.value.toString().toInt()
+            number++
+            myRef.child(auth.currentUser?.uid.toString()).child("num").setValue(number.toString())
 
-        myRef.child(auth.currentUser?.uid.toString()).child("badge").setValue(strBitmap)
+            // 배지
+            val imgView = binding.iv
+            val image : Drawable = imgView.drawable
+            val bitmap : Bitmap = image.toBitmap()
+
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            //val uploadImage = stream.toByteArray()
+            //val simage = byteArrayToBinaryString(uploadImage)
+            val strBitmap = BitmapToString(bitmap)
+
+            myRef.child(auth.currentUser?.uid.toString()).child("badge${number}").setValue(strBitmap)
+        }
+
+
 
         /*val key : String = myRef.child("/badges").push().key!!
         val childUpdates : MutableMap<String,Any> = HashMap()

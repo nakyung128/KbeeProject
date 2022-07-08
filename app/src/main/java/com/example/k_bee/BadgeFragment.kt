@@ -59,8 +59,6 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
 
         badge1 = view.findViewById(R.id.badge1)
 
-
-
         // 아이디 식별
         /*for (i in 0 until length)
         {
@@ -82,7 +80,7 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
                         val resID = requireContext().resources.getIdentifier(badgeID, "id", requireContext().packageName)
                         //var badgeName : ImageView = view.findViewById(resID)
                         badgeList[i] = view.findViewById(resID) as ImageView
-                        badge1.setImageBitmap(imgBitmap)
+                        badgeList[i]?.setImageBitmap(imgBitmap)
                     }
                 }
             }

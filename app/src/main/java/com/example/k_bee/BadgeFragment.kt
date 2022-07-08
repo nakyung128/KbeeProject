@@ -1,18 +1,22 @@
 package com.example.k_bee
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import kotlin.experimental.or
 
 class BadgeFragment : Fragment(R.layout.fragment_badge) {
@@ -23,33 +27,33 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
     // 사용자 고유 uid
     private var user : String = ""
 
-    val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    val myRef: DatabaseReference = database.getReference()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
+        // DB 사용
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val myRef: DatabaseReference = database.getReference()
         val view = inflater.inflate(R.layout.fragment_badge, container, false)
 
-        // 사용자 uid
-        auth = FirebaseAuth.getInstance()
-        // 유저 정보
-        user = auth.currentUser?.uid.toString()
+        auth = FirebaseAuth.getInstance() // 사용자 uid
+        user = auth.currentUser?.uid.toString() // 유저 정보
 
         badge1 = view.findViewById(R.id.badge1)
 
         myRef.child("$user").child("badge").get().addOnSuccessListener {
-            val image : String = it.value.toString()
-            Toast.makeText(activity, image, Toast.LENGTH_SHORT).show()
-            val b : ByteArray = binaryStringToByteArray(image)
-            val stream = ByteArrayInputStream(b)
-            val downImg = Drawable.createFromStream(stream, "image")
-            badge1.setImageDrawable(downImg)
+            if (it.value != null) {
+                val image : String = it.value.toString()
+                //val imgBitmap : Bitmap? = StringToBitmap(image)
+                //Log.d("imgBitmap", imgBitmap.toString())
+                //val drawable = BitmapDrawable(imgBitmap)
+                val b : ByteArray = binaryStringToByteArray(image)
+                val stream = ByteArrayInputStream(b)
+                //Log.d("stream", stream.toString())
+                val downImg = Drawable.createFromStream(stream, "image")
+                badge1.setImageDrawable(downImg)
+            }
         }
-
         return view
     }
 
@@ -73,6 +77,18 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
             total = (ret.or(total))
         }
         return total
+    }
+
+    // String을 Bitmap으로 변환시켜주는 함수
+    fun StringToBitmap(encodedString : String): Bitmap? {
+         return try {
+             val encodeByte: ByteArray =
+                 Base64.decode(encodedString, Base64.DEFAULT)
+             BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
+         } catch (e: Exception) {
+             e.message
+             null
+         }
     }
 }
 

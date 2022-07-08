@@ -20,6 +20,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Base64
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -236,6 +237,7 @@ class ShareActivity : AppCompatActivity() {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val uploadImage = stream.toByteArray()
         val simage = byteArrayToBinaryString(uploadImage)
+        //val strBitmap = BitmapToString(bitmap)
 
         myRef.child(auth.currentUser?.uid.toString()).child("badge").setValue(simage.toString())
 
@@ -243,6 +245,13 @@ class ShareActivity : AppCompatActivity() {
         val childUpdates : MutableMap<String,Any> = HashMap()
         childUpdates["/badges/$key"] = simage.toString()
         myRef.updateChildren(childUpdates)*/
+    }
+
+    fun BitmapToString(bitmap: Bitmap): String? {
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos)
+        val bytes: ByteArray = baos.toByteArray()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
 
     fun byteArrayToBinaryString(b: ByteArray) : StringBuilder {

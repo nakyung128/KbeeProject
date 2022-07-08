@@ -31,6 +31,7 @@
                 android:text="닉네임"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,6 +43,7 @@
                 android:fontFamily="@font/kotrahope"
                 android:text="자기소개"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/name"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,6 +57,8 @@
                 android:text="email@mail.com"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/intro"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.481" />

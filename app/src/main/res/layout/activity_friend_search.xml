@@ -7,40 +7,26 @@
     tools:context=".FriendActivity">
 
     <EditText
-        android:id="@+id/emailSearch"
+        android:id="@+id/nameSearch"
         android:layout_width="276dp"
         android:layout_height="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:fontFamily="@font/kotrahope"
         android:hint="닉네임으로 검색하기"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toStartOf="@+id/searchBtn"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/searchBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginRight="39dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/emailSearch"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_search_category_default"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userVIew"
-        android:layout_width="0dp"
-        android:layout_height="466dp"
+        android:layout_width="409dp"
+        android:layout_height="472dp"
         android:layout_marginTop="32dp"
+        android:isScrollContainer="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/nameSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

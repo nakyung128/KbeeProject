@@ -39,6 +39,8 @@ class BadgeFragment : Fragment(R.layout.fragment_badge) {
 
         badge1 = view.findViewById(R.id.badge1)
 
+
+
         myRef.child("$user").child("badge").get().addOnSuccessListener {
             if (it.value != null) {
                 val image : String = it.value.toString()

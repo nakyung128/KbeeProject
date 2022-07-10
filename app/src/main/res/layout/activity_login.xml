@@ -8,42 +8,54 @@
 
     <Button
         android:id="@+id/ggBtn"
-        android:layout_width="336dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="444dp"
+        android:layout_width="348dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="31dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/login1"
+        android:drawableStart="@drawable/google"
         android:fontFamily="@font/nanumbae"
+        android:paddingLeft="20dp"
         android:text="구글 계정으로 로그인"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/kkoBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/kkoBtn"
-        android:layout_width="336dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="492dp"
+        android:layout_width="348dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="31dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/login2"
+        android:drawableStart="@drawable/kakao"
         android:fontFamily="@font/nanumbae"
+        android:paddingLeft="15dp"
         android:text="카카오 계정으로 로그인"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="230dp"
         android:layout_height="235dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="144dp"
+        android:src="@drawable/flying"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/flying" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv"
@@ -56,4 +68,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

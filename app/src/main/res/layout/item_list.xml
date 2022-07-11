@@ -5,7 +5,8 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:layoutDescription="@xml/item_list_scene">
+    app:layoutDescription="@xml/item_list_scene"
+    android:background="#FFF0BA">
 
     <CheckBox
         android:id="@+id/todoItem"

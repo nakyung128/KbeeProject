@@ -91,32 +91,34 @@
 
             <Button
                 android:id="@+id/bg_change_btn"
-                android:layout_width="366dp"
+                android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/rectangle6"
                 android:fontFamily="@font/nanumbae"
                 android:onClick="@{viewModel.randomBackgroundSetClick}"
                 android:text="배경색 변경하기"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_layout" />
 
             <Button
                 android:id="@+id/save_img_btn"
-                android:layout_width="match_parent"
+                android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rectangle6"
                 android:fontFamily="@font/nanumbae"
                 android:onClick="instaShareBtn"
                 android:text="인스타그램 스토리로 공유하기"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bg_change_btn" />
 

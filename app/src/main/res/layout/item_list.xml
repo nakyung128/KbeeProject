@@ -10,9 +10,10 @@
     <CheckBox
         android:id="@+id/todoItem"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/kotrahope"
+        android:paddingLeft="5dp"
         android:text="텍스트"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

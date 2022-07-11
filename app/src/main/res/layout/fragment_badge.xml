@@ -17,6 +17,7 @@
         android:fontFamily="@font/kotrahope"
         android:gravity="center_vertical"
         android:text="배지 도감"
+        android:textColor="#353535"
         android:textSize="34sp" />
 
     <ScrollView

@@ -51,11 +51,11 @@ class MainViewModel : ViewModel() {
         // 색상은 나중에 어울리는 거로 바꾸어야 할 듯
         backgroundList = mutableListOf(
             R.color.white,
-            R.color.Ivory,
-            R.color.AntiqueWhite,
-            R.color.SkyBlue,
-            R.color.YellowGreen,
-            R.color.OrangeRed
+            R.color.LightSalmon,
+            R.color.LightPink,
+            R.color.LightYellow,
+            R.color.LightBlue,
+            R.color.LightGrey
         )
 
         // 이미지는 랜덤으로

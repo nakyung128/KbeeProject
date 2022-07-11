@@ -37,7 +37,6 @@
         <entry key="..\:/Users/kmk/AndroidStudioProjects/KbeeProject/app/src/main/res/layout/activity_home.xml" value="0.5" />
         <entry key="..\:/Users/kmk/AndroidStudioProjects/KbeeProject/app/src/main/res/layout/activity_home_calendar.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/kmk/AndroidStudioProjects/KbeeProject/app/src/main/res/layout/activity_home_list.xml" value="0.18020833333333333" />
-        <entry key="..\:/src/KbeeProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.255" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_friend_search.xml" value="0.24947916666666667" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_intro.xml" value="0.24947916666666667" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_list.xml" value="0.24947916666666667" />
@@ -45,7 +44,7 @@
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_nickname.xml" value="0.264" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_share.xml" value="0.264" />
-        <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/src/KbeeProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.24139492753623187" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/fragment_badge.xml" value="0.24139492753623187" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/fragment_home.xml" value="0.24947916666666667" />
         <entry key="..\:/src/KbeeProject/app/src/main/res/layout/fragment_mypage.xml" value="0.24947916666666667" />

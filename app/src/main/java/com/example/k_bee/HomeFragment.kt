@@ -10,8 +10,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,17 +17,17 @@ import java.util.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    lateinit var add1 : FloatingActionButton
+    lateinit var add1 : Button
     lateinit var todo1 : TextView
-    lateinit var add2 : FloatingActionButton
+    lateinit var add2 : Button
     lateinit var todo2 : TextView
-    lateinit var add3 : FloatingActionButton
+    lateinit var add3 : Button
     lateinit var todo3 : TextView
-    lateinit var add4 : FloatingActionButton
+    lateinit var add4 : Button
     lateinit var todo4 : TextView
-    lateinit var add5 : FloatingActionButton
+    lateinit var add5 : Button
     lateinit var todo5 : TextView
-    lateinit var add6 : FloatingActionButton
+    lateinit var add6 : Button
     lateinit var todo6 : TextView
     lateinit var todoImg1 : ImageView
     lateinit var todoImg2 : ImageView
@@ -114,7 +112,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         todoImg5 = view.findViewById(R.id.todo_check5)
         todoImg6 = view.findViewById(R.id.todo_check6)
 
-        friendSearch = view.findViewById(R.id.button2)
+        friendSearch = view.findViewById(R.id.friendBtn)
 
         friendSearch.setOnClickListener {
             var intent = Intent(context, FriendActivity::class.java)

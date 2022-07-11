@@ -11,9 +11,9 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/todo_check2"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@+id/todo_check6"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/empty" />
 
@@ -21,73 +21,55 @@
         android:id="@+id/todo_check5"
         android:layout_width="152dp"
         android:layout_height="149dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="111dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/todo3"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/todo_check4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/todo6"
-        app:layout_constraintVertical_bias="0.474"
+        app:layout_constraintTop_toBottomOf="@+id/todo_check6"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
         android:id="@+id/todo_check6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/todo5"
-        app:layout_constraintEnd_toStartOf="@+id/todo2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintStart_toStartOf="@+id/todo_check5"
+        app:layout_constraintTop_toTopOf="@+id/todo_check1"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
         android:id="@+id/todo_check2"
         android:layout_width="155dp"
         android:layout_height="147dp"
-        android:layout_marginTop="212dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toTopOf="@+id/todo3"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.961"
-        app:layout_constraintStart_toEndOf="@+id/todo6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="@+id/todo_check1"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
         android:id="@+id/todo_check4"
         android:layout_width="146dp"
         android:layout_height="163dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="84dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/todo1"
-        app:layout_constraintVertical_bias="0.827"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/todo_check5"
         app:srcCompat="@drawable/empty" />
 
     <ImageView
         android:id="@+id/todo_check3"
         android:layout_width="154dp"
         android:layout_height="144dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="111dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/todo_check4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/todo4"
-        app:layout_constraintTop_toBottomOf="@+id/todo2"
-        app:layout_constraintVertical_bias="0.598"
+        app:layout_constraintTop_toBottomOf="@+id/todo_check2"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/empty" />
 
     <TextView
@@ -95,53 +77,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/kotrahope"
-        android:text="TextView"
+        android:text="_월 _주차"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/todo_check4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/todo_check5"
         app:layout_constraintRight_toLeftOf="@id/todo_check3"
-        app:layout_constraintTop_toBottomOf="@id/todo_check1" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/todo_check1"
+        app:layout_constraintVertical_bias="0.488" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/flying" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/add2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="44dp"
+        android:background="@drawable/add"
         android:clickable="true"
         android:labelFor="@id/todo_check2"
         app:layout_constraintBottom_toBottomOf="@id/todo_check2"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintLeft_toLeftOf="@id/todo_check2"
         app:layout_constraintRight_toRightOf="@id/todo_check2"
         app:layout_constraintTop_toTopOf="@id/todo_check2"
-        app:layout_constraintVertical_bias="0.038"
-        app:srcCompat="@android:drawable/ic_menu_add"
+        app:layout_constraintVertical_bias="0.145"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/add1"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/add"
         android:clickable="true"
         android:labelFor="@id/todo_check1"
         app:layout_constraintBottom_toBottomOf="@id/todo_check1"
         app:layout_constraintEnd_toEndOf="@id/todo_check1"
         app:layout_constraintStart_toStartOf="@id/todo_check1"
         app:layout_constraintTop_toTopOf="@+id/todo_check1"
-        app:layout_constraintVertical_bias="0.018"
-        app:srcCompat="@android:drawable/ic_menu_add"
+        app:layout_constraintVertical_bias="0.214"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -170,22 +155,23 @@
         app:layout_constraintRight_toRightOf="@id/todo_check1"
         app:layout_constraintTop_toTopOf="@id/todo_check1" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/add6"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/add"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@id/todo_check6"
         app:layout_constraintLeft_toLeftOf="@id/todo_check6"
         app:layout_constraintRight_toRightOf="@id/todo_check6"
         app:layout_constraintTop_toTopOf="@id/todo_check6"
-        app:srcCompat="@android:drawable/ic_menu_add"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/add5"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/add"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@id/todo_check5"
         app:layout_constraintHorizontal_bias="0.509"
@@ -193,33 +179,31 @@
         app:layout_constraintRight_toRightOf="@id/todo_check5"
         app:layout_constraintTop_toTopOf="@id/todo_check5"
         app:layout_constraintVertical_bias="0.445"
-        app:srcCompat="@android:drawable/ic_menu_add"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/add4"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/add"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@id/todo_check4"
         app:layout_constraintLeft_toLeftOf="@id/todo_check4"
         app:layout_constraintRight_toRightOf="@id/todo_check4"
         app:layout_constraintTop_toTopOf="@id/todo_check4"
-        app:srcCompat="@android:drawable/ic_menu_add"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/add3"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/add"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@id/todo_check3"
-        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintLeft_toLeftOf="@id/todo_check3"
         app:layout_constraintRight_toRightOf="@id/todo_check3"
         app:layout_constraintTop_toTopOf="@id/todo_check3"
-        app:layout_constraintVertical_bias="0.521"
-        app:srcCompat="@android:drawable/ic_menu_add"
+        app:layout_constraintVertical_bias="0.531"
         tools:ignore="SpeakableTextPresentCheck"
         tools:layout_constraintLeft_toLeftOf="@id/todo_check3" />
 
@@ -278,12 +262,16 @@
         app:layout_constraintTop_toTopOf="@id/todo_check3" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/friendBtn"
+        android:layout_width="102dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:fontFamily="@font/kotrahope"
+        android:gravity="center|start"
         android:text="친구 찾기"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

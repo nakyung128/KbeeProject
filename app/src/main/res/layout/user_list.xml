@@ -29,6 +29,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/kotrahope"
                 android:text="닉네임"
+                android:textColor="#000000"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_weight="1"

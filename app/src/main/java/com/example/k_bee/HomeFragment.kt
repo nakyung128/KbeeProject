@@ -86,6 +86,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     "",
                     "",
                     "",
+                    "0"
                 )
                 myRef.child(user).setValue(dataInput)
             }

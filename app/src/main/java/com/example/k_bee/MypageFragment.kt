@@ -151,6 +151,7 @@ class MypageFragment : Fragment(R.layout.fragment_mypage) {
                 val selectedImageUri: Uri? = data?.data
                 if (selectedImageUri != null) {
                     ivProfile.setImageURI(selectedImageUri)
+
                 } else {
                     Toast.makeText(context, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
                 }

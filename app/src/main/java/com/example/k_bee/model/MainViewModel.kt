@@ -76,23 +76,23 @@ class MainViewModel : ViewModel() {
     }
 
     private fun badge() {
+        val idx = (Math.random() * imageList.size).toInt()
+        image.value = (imageList[idx])
+        imageList.remove(imageList[idx]) // 받은 뱃지 리스트에서 제거
+        background.value = R.color.white
+        content.value = "새로운 뱃지 획득!"
+        title.value = "BEE-SIDE 스토리 인증"
         // 모든 뱃지 다 수령함
-        if (imageList.isEmpty()) {
+        /*if (imageList.isEmpty()) {
             image.value = R.drawable.standing // 일단 서 있는 꿀벌 이미지로
             background.value = R.color.white
             content.value = "모든 뱃지를 다 모았어요"
             title.value = "대단해요!"
         } else { // 아직 뱃지 남아 있을 때
-            val idx = (Math.random() * imageList.size).toInt()
-            image.value = (imageList[idx])
-            imageList.remove(imageList[idx]) // 받은 뱃지 리스트에서 제거
-            background.value = R.color.white
-            content.value = "새로운 뱃지 획득!"
-            title.value = "BEE-SIDE 스토리 인증"
+
 
             //var badgeImage : ColorDrawable = imageList[idx].toDrawable()
-        }
-
+        }*/
     }
 
     // firebase 에 배지 이미지 업로드

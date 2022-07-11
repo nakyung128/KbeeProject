@@ -13,5 +13,6 @@ data class DataModel (
     var todo3 : String = "",
     var todo4 : String = "",
     var todo5 : String = "",
-    var todo6 : String = ""
+    var todo6 : String = "",
+    var num : String = ""
     )

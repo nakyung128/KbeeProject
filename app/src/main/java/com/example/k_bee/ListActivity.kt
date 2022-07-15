@@ -68,13 +68,6 @@ class ListActivity : AppCompatActivity() {
             startActivity(intent) // 이동
         }
 
-        /*todoAdapter.setItemCheckBoxClickListener(object : RecyclerItemAdapter.ItemCheckBoxClickListener {
-            override fun onClick(view: View, position: Int, itemId: Long) {
-                CoroutineScope(Dispatchers.IO).launch {
-
-                }
-            }
-        })*/
     }
     private fun initRecycler() {
         todoAdapter = RecyclerItemAdapter(this)

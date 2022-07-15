@@ -5,22 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.user_list.view.*
 
 class FriendActivity : AppCompatActivity() {
@@ -43,13 +35,9 @@ class FriendActivity : AppCompatActivity() {
         userView.adapter = UserViewAdapter()
         userView.layoutManager = LinearLayoutManager(this)
 
-        /*searchBtn.setOnClickListener {
-            (userView.adapter as UserViewAdapter).search(nameSearch.text.toString())
-        }*/
-
         var watcher = MyEditWatcher()
         nameSearch.addTextChangedListener(watcher)
-        //nameSearch.setOnClickListener(MyEnterListener())
+
     }
 
     inner class UserViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -122,16 +110,5 @@ class FriendActivity : AppCompatActivity() {
         }
     }
 
-    /*inner class MyEnterListener : TextView.OnEditorActionListener {
-        override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-            var handled = false // 키보드 내림
-            // 완료 버튼 클릭 처리
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
 
-            } else if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                handled = true // 키보드 유지
-            }
-            return handled
-        }
-    }*/
 }

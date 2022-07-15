@@ -60,7 +60,6 @@ class ShareActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        //val badgeBtn : Button = findViewById(R.id.badgeBtn)
 
         badgeUpload()
     }
@@ -250,11 +249,6 @@ class ShareActivity : AppCompatActivity() {
         }
 
 
-
-        /*val key : String = myRef.child("/badges").push().key!!
-        val childUpdates : MutableMap<String,Any> = HashMap()
-        childUpdates["/badges/$key"] = simage.toString()
-        myRef.updateChildren(childUpdates)*/
     }
 
     fun BitmapToString(bitmap: Bitmap): String? {

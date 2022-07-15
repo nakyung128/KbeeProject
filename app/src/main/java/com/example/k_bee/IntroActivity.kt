@@ -36,10 +36,7 @@ class IntroActivity : AppCompatActivity() {
             // 마이 페이지로 이동
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-           /* supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.frame_layout, mypageFragment)
-                .commit()*/
+
         }
     }
 }
